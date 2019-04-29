@@ -3,7 +3,7 @@ class FyleSDKError(Exception):
     """The base exception class for FyleSDK.
 
     Parameters:
-        msg (dict): Short description of the error.
+        msg (str): Short description of the error.
         response: Error response from the API call.
     """
 
