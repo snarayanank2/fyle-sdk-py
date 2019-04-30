@@ -19,12 +19,12 @@ class Reimbursements(ApiBase):
         Returns:
             List with dicts in Reimbursments schema.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit,
             'exported': exported
-        }, Reimbursements.GET_REIMBURSEMENTS, self._access_token)
+        }, Reimbursements.GET_REIMBURSEMENTS)
 
     def count(self, updated_at=None, exported=None):
         """Get the number of Reimbursements that satisfy the parameters.
@@ -36,7 +36,7 @@ class Reimbursements(ApiBase):
         Returns:
             Count of Reimbursements.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'exported': exported
-        }, Reimbursements.GET_REIMBURSEMENTS_COUNT, self._access_token)
+        }, Reimbursements.GET_REIMBURSEMENTS_COUNT)

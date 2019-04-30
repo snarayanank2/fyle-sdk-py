@@ -19,12 +19,12 @@ class HotelBookingCancellations(ApiBase):
         Returns:
             List with dicts in HotelBookingCancellations schema.
         """
-        return get_request({
+        return self._get_request({
             'trip_request_id': trip_request_id,
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit
-        }, HotelBookingCancellations.GET_HOTEL_BOOKING_CANCELLATIONS, self._access_token)
+        }, HotelBookingCancellations.GET_HOTEL_BOOKING_CANCELLATIONS)
 
     def count(self, trip_request_id=None, updated_at=None):
         """Get the count of existing Hotel Booking Cancellations.
@@ -36,7 +36,7 @@ class HotelBookingCancellations(ApiBase):
         Returns:
             Count of Hotel Booking Cancellations.
         """
-        return get_request({
+        return self._get_request({
             'trip_request_id': trip_request_id,
             'updated_at': updated_at
-        }, HotelBookingCancellations.GET_HOTEL_BOOKING_CANCELLATIONS_COUNT, self._access_token)
+        }, HotelBookingCancellations.GET_HOTEL_BOOKING_CANCELLATIONS_COUNT)

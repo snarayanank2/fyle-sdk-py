@@ -15,6 +15,6 @@ class Categories(ApiBase):
         Returns:
             List with dicts in Categories schema.
         """
-        return get_request({
+        return self._get_request({
             'active_only': active_only
-        }, Categories.GET_CATEGORIES, self._access_token)
+        }, Categories.GET_CATEGORIES)

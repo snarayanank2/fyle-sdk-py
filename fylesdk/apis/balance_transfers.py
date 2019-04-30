@@ -19,12 +19,12 @@ class BalanceTransfers(ApiBase):
         Returns:
             List with dicts in BalanceTransfers schema.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit,
             'exported': exported
-        }, BalanceTransfers.GET_BALANCE_TRANSFERS, self._access_token)
+        }, BalanceTransfers.GET_BALANCE_TRANSFERS)
 
     def count(self, updated_at=None, exported=None):
         """Get the count of existing Balance Transfers.
@@ -36,7 +36,7 @@ class BalanceTransfers(ApiBase):
         Returns:
             Count of Refunds.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'exported': exported
-        }, BalanceTransfers.GET_BALANCE_TRANSFERS_COUNT, self._access_token)
+        }, BalanceTransfers.GET_BALANCE_TRANSFERS_COUNT)

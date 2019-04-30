@@ -19,12 +19,12 @@ class TransportationBookingCancellations(ApiBase):
         Returns:
             List with dicts in TransportationBookingCancellations schema.
         """
-        return get_request({
+        return self._get_request({
             'trip_request_id': trip_request_id,
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit
-        }, TransportationBookingCancellations.GET_TRANSPORTATION_BOOKING_CANCELLATIONS, self._access_token)
+        }, TransportationBookingCancellations.GET_TRANSPORTATION_BOOKING_CANCELLATIONS)
 
     def count(self, trip_request_id=None, updated_at=None):
         """Get the count of existing Transportation Booking Cancellations.
@@ -36,7 +36,7 @@ class TransportationBookingCancellations(ApiBase):
         Returns:
             Count of Transportation Booking Cancellations.
         """
-        return get_request({
+        return self._get_request({
             'trip_request_id': trip_request_id,
             'updated_at': updated_at
-        }, TransportationBookingCancellations.GET_TRANSPORTATION_BOOKING_CANCELLATIONS_COUNT, self._access_token)
+        }, TransportationBookingCancellations.GET_TRANSPORTATION_BOOKING_CANCELLATIONS_COUNT)

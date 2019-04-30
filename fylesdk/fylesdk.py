@@ -1,5 +1,8 @@
+from .exceptions import *
 from .utils import get_access_token
 from .apis import *
+import requests
+import json
 
 
 class FyleSDK:
@@ -10,6 +13,8 @@ class FyleSDK:
         client_secret (str): Client secret for Fyle API.
         refresh_token (str): Refresh token for Fyle API.
     """
+
+    TOKEN_URL = 'https://staging.fyle.in/api/oauth/token'
 
     def __init__(self, client_id, client_secret, refresh_token):
         # store the credentials
@@ -44,7 +49,7 @@ class FyleSDK:
     def update_access_token(self):
         """Update the access token and change it in all API objects."""
         
-        access_token = get_access_token(self.__client_id, self.__client_secret, self.__refresh_token)
+        access_token = self.__get_access_token()
         
         self.Employees.change_access_token(access_token)
         self.Expenses.change_access_token(access_token)
@@ -64,3 +69,36 @@ class FyleSDK:
         self.HotelRequests.change_access_token(access_token)
         self.HotelBookings.change_access_token(access_token)
         self.HotelBookingCancellations.change_access_token(access_token)
+
+
+    def __get_access_token(self):
+        """Get the access token using a HTTP post.
+        
+        Returns:
+            A new access token.
+        """
+
+        api_data = {
+            'grant_type': 'refresh_token',
+            'refresh_token': self.__refresh_token,
+            'client_id': self.__client_id,
+            'client_secret': self.__client_secret
+        }
+
+        response = requests.post(FyleSDK.TOKEN_URL, data=api_data)
+
+        if response.status_code == 200:
+            access_token = json.loads(response.text)['access_token']
+            return access_token
+        
+        elif response.status_code == 401:
+            raise UnauthorizedClientError('Wrong client secret or/and refresh token', response.text)
+
+        elif response.status_code == 404:
+            raise NotFoundClientError('Client ID doesn\'t exist', response.text)
+
+        elif response.status_code == 500:
+            raise InternalServerError('Internal server error', response.text)
+
+        else:
+            raise FyleSDKError('Error: {0}'.format(response.status_code), response.text)

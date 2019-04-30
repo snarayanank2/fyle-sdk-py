@@ -19,12 +19,12 @@ class Reports(ApiBase):
         Returns:
             List with dicts in Reports schema.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit,
             'exported': exported
-        }, Reports.GET_REPORTS, self._access_token)
+        }, Reports.GET_REPORTS)
 
     def count(self, updated_at=None, exported=None):
         """Get the count of Reports that match the parameters.
@@ -36,7 +36,7 @@ class Reports(ApiBase):
         Returns:
             Count of Reports.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'exported': exported
-        }, Reports.GET_REPORTS_COUNT, self._access_token)
+        }, Reports.GET_REPORTS_COUNT)

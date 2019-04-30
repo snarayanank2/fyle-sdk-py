@@ -19,12 +19,12 @@ class Refunds(ApiBase):
         Returns:
             List with dicts in Refunds schema.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit,
             'exported': exported
-        }, Refunds.GET_REFUNDS, self._access_token)
+        }, Refunds.GET_REFUNDS)
 
     def count(self, updated_at=None, exported=None):
         """Get the count of existing Refunds that match the parameters.
@@ -36,7 +36,7 @@ class Refunds(ApiBase):
         Returns:
             Count of Refunds.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'exported': exported
-        }, Refunds.GET_REFUNDS_COUNT, self._access_token)
+        }, Refunds.GET_REFUNDS_COUNT)

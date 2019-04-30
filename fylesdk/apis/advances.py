@@ -19,12 +19,12 @@ class Advances(ApiBase):
         Returns:
             List with dicts in Advance schema.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit,
             'exported': exported
-        }, Advances.GET_ADVANCES, self._access_token)
+        }, Advances.GET_ADVANCES)
 
     def count(self, updated_at=None, exported=None):
         """Get a count of the existing Advances that match the parameters.
@@ -37,7 +37,7 @@ class Advances(ApiBase):
         Returns:
             Count of Advances.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'exported': exported
-        }, Advances.GET_ADVANCES_COUNT, self._access_token)
+        }, Advances.GET_ADVANCES_COUNT)

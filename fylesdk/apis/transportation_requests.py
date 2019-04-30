@@ -19,12 +19,12 @@ class TransportationRequests(ApiBase):
         Returns:
             List with dicts in TransportationRequests schema.
         """
-        return get_request({
+        return self._get_request({
             'trip_request_id': trip_request_id,
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit
-        }, TransportationRequests.GET_TRANSPORTATION_REQUESTS, self._access_token)
+        }, TransportationRequests.GET_TRANSPORTATION_REQUESTS)
 
     def count(self, trip_request_id=None, updated_at=None):
         """Get the count of existing Transportation Requests.
@@ -36,7 +36,7 @@ class TransportationRequests(ApiBase):
         Returns:
             Count of Transportation Requests.
         """
-        return get_request({
+        return self._get_request({
             'trip_request_id': trip_request_id,
             'updated_at': updated_at
-        }, TransportationRequests.GET_TRANSPORTATION_REQUESTS_COUNT, self._access_token)
+        }, TransportationRequests.GET_TRANSPORTATION_REQUESTS_COUNT)

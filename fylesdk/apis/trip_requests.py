@@ -18,11 +18,11 @@ class TripRequests(ApiBase):
         Returns:
             List with dicts in TripRequests schema.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit
-        }, TripRequests.GET_TRIP_REQUESTS, self._access_token)
+        }, TripRequests.GET_TRIP_REQUESTS)
 
     def count(self, updated_at=None, exported=None):
         """Get the count of existing Trip Requests.
@@ -33,6 +33,6 @@ class TripRequests(ApiBase):
         Returns:
             Count of Trip Request.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at
-        }, TripRequests.GET_TRIP_REQUESTS_COUNT, self._access_token)
+        }, TripRequests.GET_TRIP_REQUESTS_COUNT)

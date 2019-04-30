@@ -19,7 +19,7 @@ class Expenses(ApiBase):
         Returns:
             ID from the new Expense.
         """
-        return post_request(data, Expenses.POST_EXPENSE, self._access_token)
+        return self._post_request(data, Expenses.POST_EXPENSE)
         
     def get(self, updated_at=None, offset=None, limit=None, submitted=None):
         """Get a list of existing Expenses, excluding the file attachments, that match the parameters.
@@ -33,12 +33,12 @@ class Expenses(ApiBase):
         Returns:
             List with dicts in Expenses schema.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit,
             'submitted': submitted
-        }, Expenses.GET_EXPENSES, self._access_token)
+        }, Expenses.GET_EXPENSES)
 
     def count(self, updated_at=None, exported=None, submitted=None):
         """Get the count of existing Expenses that match the given parameters.
@@ -51,11 +51,11 @@ class Expenses(ApiBase):
         Returns:
             Count of Expenses.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'exported': exported,
             'submitted': submitted
-        }, Expenses.GET_EXPENSES_COUNT, self._access_token)
+        }, Expenses.GET_EXPENSES_COUNT)
 
     def get_by_id(self, expense_id):
         """Get an Expense by Id including the file attachments.
@@ -66,7 +66,7 @@ class Expenses(ApiBase):
         Returns:
             Dict in Expense schema.
         """
-        return get_request({}, Expenses.GET_EXPENSE_BY_ID.format(expense_id), self._access_token)
+        return self._get_request({}, Expenses.GET_EXPENSE_BY_ID.format(expense_id))
     
     def get_attachments(self, expense_id):
         """Get all the file attachments associated with an Expense.
@@ -77,4 +77,4 @@ class Expenses(ApiBase):
         Returns:
             List with dicts in Attachments schema.
         """
-        return get_request({}, Expenses.GET_EXPENSE_ATTACHMENTS.format(expense_id), self._access_token)
+        return self._get_request({}, Expenses.GET_EXPENSE_ATTACHMENTS.format(expense_id))

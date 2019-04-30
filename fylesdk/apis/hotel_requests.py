@@ -19,12 +19,12 @@ class HotelRequests(ApiBase):
         Returns:
             List with dicts in HotelRequests schema.
         """
-        return get_request({
+        return self._get_request({
             'trip_request_id': trip_request_id,
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit
-        }, HotelRequests.GET_HOTEL_REQUESTS, self._access_token)
+        }, HotelRequests.GET_HOTEL_REQUESTS)
 
     def count(self, trip_request_id=None, updated_at=None):
         """Get the count of existing Hotel Requests.
@@ -36,7 +36,7 @@ class HotelRequests(ApiBase):
         Returns:
             Count of Hotel Requests.
         """
-        return get_request({
+        return self._get_request({
             'trip_request_id': trip_request_id,
             'updated_at': updated_at
-        }, HotelRequests.GET_HOTEL_REQUESTS_COUNT, self._access_token)
+        }, HotelRequests.GET_HOTEL_REQUESTS_COUNT)

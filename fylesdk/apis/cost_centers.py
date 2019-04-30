@@ -15,6 +15,6 @@ class CostCenters(ApiBase):
         Returns:
             List with dicts in CostCenters schema.
         """
-        return get_request({
+        return self._get_request({
             'active_only': active_only
-        }, CostCenters.GET_COST_CENTERS, self._access_token)
+        }, CostCenters.GET_COST_CENTERS)

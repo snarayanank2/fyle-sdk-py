@@ -15,6 +15,6 @@ class Projects(ApiBase):
         Returns:
             List with dicts in Projects schema.
         """
-        return get_request({
+        return self._get_request({
             'active_only': active_only
-        }, Projects.GET_PROJECTS, self._access_token)
+        }, Projects.GET_PROJECTS)

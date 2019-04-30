@@ -15,7 +15,7 @@ class Exports(ApiBase):
         Parameters:
             data (list): List of dicts in Exports schema.
         """
-        return post_request(data, Exports.POST_EXPORTS, self._access_token)
+        return self._post_request(data, Exports.POST_EXPORTS)
         
     def get(self, updated_at=None, offset=None, limit=None):
         """Returns the details of Third Party Exports.
@@ -28,11 +28,11 @@ class Exports(ApiBase):
         Returns:
             List with dicts in Exports schema.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit
-        }, Exports.GET_EXPORTS, self._access_token)
+        }, Exports.GET_EXPORTS)
 
     def count(self, updated_at=None):
         """Returns the count of Third Party Exports, that satisfy the parameters.
@@ -43,9 +43,9 @@ class Exports(ApiBase):
         Returns:
             Count of Exports.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at
-        }, Exports.GET_EXPORTS_COUNT, self._access_token)
+        }, Exports.GET_EXPORTS_COUNT)
 
     def get_by_id(self, export_id):
         """Get the details of a Third Party Export.
@@ -56,4 +56,4 @@ class Exports(ApiBase):
         Returns:
             Dict in Export schema.
         """
-        return get_request({}, Exports.GET_EXPORT_BY_ID.format(export_id), self._access_token)
+        return self._get_request({}, Exports.GET_EXPORT_BY_ID.format(export_id))

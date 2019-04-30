@@ -17,7 +17,7 @@ class Employees(ApiBase):
         Returns:
             List with IDs from the new Employees.
         """
-        return post_request(data, Employees.POST_EMPLOYEES, self._access_token)
+        return self._post_request(data, Employees.POST_EMPLOYEES)
         
     def get(self, updated_at=None, offset=None, limit=None):
         """Get a list of existing Employees matching the parameters.
@@ -30,11 +30,11 @@ class Employees(ApiBase):
         Returns:
             List with dicts in Employees schema.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit
-        }, Employees.GET_EMPLOYEES, self._access_token)
+        }, Employees.GET_EMPLOYEES)
 
     def count(self, updated_at=None):
         """Get the count of existing Employees.
@@ -45,6 +45,6 @@ class Employees(ApiBase):
         Returns:
             Count of Employees.
         """
-        return get_request({
+        return self._get_request({
             'updated_at': updated_at
-        }, Employees.GET_EMPLOYEES_COUNT, self._access_token)
+        }, Employees.GET_EMPLOYEES_COUNT)
