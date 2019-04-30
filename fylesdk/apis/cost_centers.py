@@ -1,5 +1,4 @@
 from .api_base import ApiBase
-from ..utils import get_request
 
 class CostCenters(ApiBase):
     """Class for Cost Centers APIs."""

@@ -1,5 +1,4 @@
 from .api_base import ApiBase
-from ..utils import get_request
 
 class HotelBookingCancellations(ApiBase):
     """Class for Hotel Booking Cancellations APIs."""

@@ -1,5 +1,4 @@
 from .api_base import ApiBase
-from ..utils import get_request
 
 class TripRequests(ApiBase):
     """Class for Trip Requests APIs."""
