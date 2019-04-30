@@ -1,5 +1,4 @@
 from .exceptions import *
-from .utils import get_access_token
 from .apis import *
 import requests
 import json

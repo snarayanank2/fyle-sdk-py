@@ -1,5 +1,4 @@
 from .api_base import ApiBase
-from ..utils import get_request
 
 class Advances(ApiBase):
     """Class for Advances APIs."""

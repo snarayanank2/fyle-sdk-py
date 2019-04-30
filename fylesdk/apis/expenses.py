@@ -1,5 +1,4 @@
 from .api_base import ApiBase
-from ..utils import get_request, post_request
 
 class Expenses(ApiBase):
     """Class for Expenses APIs."""
