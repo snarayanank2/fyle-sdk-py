@@ -24,7 +24,7 @@ class Employees(ApiBase):
         '''Get a the details of the Employee by Id
 
         Parameters:
-            employee_id (str): Unique ID to find an Employee. Employee Id is our internal Id, it starts with preifx ou always. (required)
+            employee_id (str): Unique ID to find an Employee. Employee Id is our internal Id, it starts with prefix ou always. (required)
 
         Returns:
             Dict in Employee schema.
