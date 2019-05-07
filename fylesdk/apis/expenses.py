@@ -60,7 +60,7 @@ class Expenses(ApiBase):
         """Get an Expense by Id including the file attachments.
 
         Parameters:
-            expense_id (str): Unique ID to find an Expense. Expense Id is our internal Id, it starts with preifx tx always. (required)
+            expense_id (str): Unique ID to find an Expense. Expense Id is our internal Id, it starts with prefix tx always. (required)
 
         Returns:
             Dict in Expense schema.
