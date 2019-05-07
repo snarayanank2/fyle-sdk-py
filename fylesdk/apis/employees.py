@@ -5,6 +5,7 @@ class Employees(ApiBase):
 
     POST_EMPLOYEES = '/api/tpa/v1/employees'
     GET_EMPLOYEES = '/api/tpa/v1/employees'
+    GET_EMPLOYEE_ADMIN = '/api/tpa/v1/employees/my_profile'
     GET_EMPLOYEES_COUNT = '/api/tpa/v1/employees/count'
 
     def post(self, data):
@@ -34,6 +35,17 @@ class Employees(ApiBase):
             'offset': offset,
             'limit': limit
         }, Employees.GET_EMPLOYEES)
+
+    def get_my_profile(self):
+        '''Get a the Employee details of the admin
+
+        Parameters:
+            None
+
+        Returns:
+            Dict in Employee schema.
+        '''
+        return self._get_request({}, Employees.GET_EMPLOYEE_ADMIN)
 
     def count(self, updated_at=None):
         """Get the count of existing Employees.
