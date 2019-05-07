@@ -5,6 +5,8 @@ class Employees(ApiBase):
 
     POST_EMPLOYEES = '/api/tpa/v1/employees'
     GET_EMPLOYEES = '/api/tpa/v1/employees'
+    GET_EMPLOYEE_BY_ID = '/api/tpa/v1/employees/{0}'
+    GET_EMPLOYEE_ADMIN = '/api/tpa/v1/employees/my_profile'
     GET_EMPLOYEES_COUNT = '/api/tpa/v1/employees/count'
 
     def post(self, data):
@@ -17,7 +19,19 @@ class Employees(ApiBase):
             List with IDs from the new Employees.
         """
         return self._post_request(data, Employees.POST_EMPLOYEES)
-        
+
+    def get_by_id(self, employee_id=None):
+        '''Get a the details of the Employee by Id
+
+        Parameters:
+            employee_id (str): Unique ID to find an Employee. Employee Id is our internal Id, it starts with preifx ou always. (required)
+
+        Returns:
+            Dict in Employee schema.
+        '''
+
+        return self._get_request({}, Employees.GET_EMPLOYEE_BY_ID.format(employee_id))
+
     def get(self, updated_at=None, offset=None, limit=None):
         """Get a list of existing Employees matching the parameters.
 
@@ -34,6 +48,17 @@ class Employees(ApiBase):
             'offset': offset,
             'limit': limit
         }, Employees.GET_EMPLOYEES)
+
+    def get_my_profile(self):
+        '''Get a the Employee details of the admin
+
+        Parameters:
+            None
+
+        Returns:
+            Dict in Employee schema.
+        '''
+        return self._get_request({}, Employees.GET_EMPLOYEE_ADMIN)
 
     def count(self, updated_at=None):
         """Get the count of existing Employees.
