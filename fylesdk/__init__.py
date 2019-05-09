@@ -14,4 +14,5 @@ __all__ = [
     InternalServerError
 ]
 
-__version__ = '0.0.1'
+name = "fylesdk"
+__version__ = '0.0.2'
