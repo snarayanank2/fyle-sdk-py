@@ -7,7 +7,9 @@ Python SDK for accessing Fyle APIs. [Fyle](https://www.fylehq.com/) is an expens
 This project requires [Python 3+](https://www.python.org/downloads/) and [Requests](https://pypi.org/project/requests/) library (pip install requests).
 
 1. Download this project and use it (copy it in your project, etc).
-2. **Not available yet** - install it from [pip](https://pypi.org).
+2. Install it from [pip](https://pypi.org).
+        
+        $ pip install fylesdk
 
 ## Usage
 
