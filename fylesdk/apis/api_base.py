@@ -5,10 +5,9 @@ import json
 class ApiBase:
     """The base class for all API classes."""
 
-    SERVER_URL = 'https://staging.fyle.in'
-
     def __init__(self):
         self.__access_token = None
+        self.__server_url = None
 
 
     def change_access_token(self, access_token):
@@ -18,6 +17,14 @@ class ApiBase:
             access_token (str): The new access token.
         """
         self.__access_token = access_token
+    
+    def set_server_url(self, server_url):
+        """Set the server URL dynamically upon creating a connction
+
+        Parameters:
+            server_url(str): The current server URL
+        """
+        self.__server_url = server_url
 
 
     def _get_request(self, params, api_url):
@@ -46,7 +53,7 @@ class ApiBase:
                 api_params[k] = p
 
         response = requests.get(
-            '{0}{1}'.format(ApiBase.SERVER_URL, api_url), 
+            '{0}{1}'.format(self.__server_url, api_url), 
             headers=api_headers, 
             params=api_params
         )
@@ -91,7 +98,7 @@ class ApiBase:
         api_headers = {'Authorization': 'Bearer {0}'.format(self.__access_token)}
         
         response = requests.post(
-            '{0}{1}'.format(ApiBase.SERVER_URL, api_url),
+            '{0}{1}'.format(self.__server_url, api_url),
             headers=api_headers,
             json=data
         )
