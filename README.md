@@ -21,6 +21,7 @@ This SDK is very easy to use.
 from fylesdk import FyleSDK
 
 connection = FyleSDK(
+    base_url='<YOUR BASE URL>',
     client_id='<YOUR CLIENT ID>',
     client_secret='<YOUR CLIENT SECRET>',
     refresh_token='<YOUR REFRESH TOKEN>'

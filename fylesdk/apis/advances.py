@@ -6,7 +6,7 @@ class Advances(ApiBase):
     GET_ADVANCES = '/api/tpa/v1/advances'
     GET_ADVANCES_COUNT = '/api/tpa/v1/advances/count'
   
-    def get(self, updated_at=None, offset=None, limit=None, exported=None):
+    def get(self, updated_at=None, settled_at=None, offset=None, limit=None, exported=None):
         """Get a list of existing Advances.
 
         Parameters:
@@ -14,6 +14,7 @@ class Advances(ApiBase):
             offset (int): A cursor for use in pagination, offset is an object ID that defines your place in the list. (optional)
             limit (int): A limit on the number of objects to be returned, between 1 and 1000. (optional)
             exported (bool): If set to true, all Advances that are exported alone will be returned. (optional)
+            settled_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
 
         Returns:
             List with dicts in Advance schema.
@@ -22,6 +23,7 @@ class Advances(ApiBase):
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit,
+            'settled_at': settled_at,
             'exported': exported
         }, Advances.GET_ADVANCES)
 

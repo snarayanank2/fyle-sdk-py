@@ -4,6 +4,18 @@ class CostCenters(ApiBase):
     """Class for Cost Centers APIs."""
 
     GET_COST_CENTERS = '/api/tpa/v1/cost_centers'
+    POST_COST_CENTERS = '/api/tpa/v1/projects'
+
+    def post(self, data):
+        """Create or Update CostCenters in bulk.
+
+        Parameters:
+            data (list): List of dicts in CostCenters schema.
+        
+        Returns:
+            List with IDs from the new and updated CostCenters.
+        """
+        return self._post_request(data, CostCenters.POST_COST_CENTERS)
   
     def get(self, active_only=None):
         """Get the list of existing CostCenters.
