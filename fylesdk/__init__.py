@@ -15,4 +15,4 @@ __all__ = [
 ]
 
 name = "fylesdk"
-__version__ = '0.0.2'
+__version__ = '0.1.0'
