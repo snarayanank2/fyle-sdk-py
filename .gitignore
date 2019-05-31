@@ -3,3 +3,7 @@
 
 # Ignore python cache
 __pycache__
+
+# Ignore release stuff
+venv/
+release.sh
