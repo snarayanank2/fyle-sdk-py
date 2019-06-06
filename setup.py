@@ -1,12 +1,11 @@
 import setuptools
-from fylesdk import __version__
 
 with open('README.md', 'r') as f:
     long_description = f.read()
 
 setuptools.setup(
     name='fylesdk',
-    version=__version__,
+    version='0.3.0',
     author='Siva Narayanan',
     author_email='siva@fyle.in',
     description='Python SDK for accessing Fyle APIs',
