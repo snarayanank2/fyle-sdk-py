@@ -20,7 +20,7 @@ class Expenses(ApiBase):
         """
         return self._post_request(data, Expenses.POST_EXPENSE)
         
-    def get(self, updated_at=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None, offset=None, limit=None, submitted=None):
+    def get(self, updated_at=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None, offset=None, verified=None, limit=None, submitted=None):
         """Get a list of existing Expenses, excluding the file attachments, that match the parameters.
         
         Parameters:
@@ -32,6 +32,7 @@ class Expenses(ApiBase):
             approved_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
             reimbursed_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
             state(str): A parameter to filter expenses by the state that they're in. (optional)
+            verified(bool): A parameter to filter verified or unverified expenses. (optional)
 
         Returns:
             List with dicts in Expenses schema.
@@ -44,7 +45,8 @@ class Expenses(ApiBase):
             'settled_at': settled_at,
             'reimbursed_at': reimbursed_at,
             'approved_at': approved_at,
-            'state': state
+            'state': state,
+            'verified': verified
         }, Expenses.GET_EXPENSES)
 
     def count(self, updated_at=None, exported=None, submitted=None):

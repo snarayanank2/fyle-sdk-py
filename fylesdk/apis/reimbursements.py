@@ -4,6 +4,7 @@ class Reimbursements(ApiBase):
     """Class for Reimbursements APIs."""
 
     GET_REIMBURSEMENTS = '/api/tpa/v1/reimbursements'
+    GET_REIMBURSEMENT_BY_ID = '/api/tpa/v1/reimbursements/{0}'
     GET_REIMBURSEMENTS_COUNT = '/api/tpa/v1/reimbursements/count'
   
     def get(self, updated_at=None, offset=None, limit=None, exported=None):
@@ -24,6 +25,17 @@ class Reimbursements(ApiBase):
             'limit': limit,
             'exported': exported
         }, Reimbursements.GET_REIMBURSEMENTS)
+
+    def get_by_id(self, reimbursement_id):
+        """Get an Reimbursement by Id.
+
+        Parameters:
+            reimbursement_id (str): Unique ID to find an Reimbursement. Reimbursement Id is our internal Id, it starts with prefix re always. (required)
+
+        Returns:
+            Dict in Reimbursement schema.
+        """
+        return self._get_request({}, Reimbursements.GET_REIMBURSEMENT_BY_ID.format(reimbursement_id))
 
     def count(self, updated_at=None, exported=None):
         """Get the number of Reimbursements that satisfy the parameters.

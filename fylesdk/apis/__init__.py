@@ -5,6 +5,7 @@ from .categories import Categories
 from .advances import Advances
 from .refunds import Refunds
 from .reimbursements import Reimbursements
+from .settlements import Settlements
 from .cost_centers import CostCenters
 from .projects import Projects
 from .balance_transfers import BalanceTransfers
@@ -26,6 +27,7 @@ __all__ = [
     'Advances',
     'Refunds',
     'Reimbursements',
+    'Settlements',
     'CostCenters',
     'Projects',
     'BalanceTransfers',
