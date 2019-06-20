@@ -7,7 +7,7 @@ class Settlements(ApiBase):
     GET_SETTLEMENT_BY_ID = '/api/tpa/v1/settlements/{0}'
     GET_SETTLEMENTS_COUNT = '/api/tpa/v1/settlements/count'
   
-    def get(self, updated_at=None, offset=None, limit=None):
+    def get(self, updated_at=None, offset=None, limit=None, exported=None):
         """Get Settlements that satisfy the parameters.
 
         Parameters:
@@ -22,7 +22,8 @@ class Settlements(ApiBase):
         return self._get_request({
             'updated_at': updated_at,
             'offset': offset,
-            'limit': limit
+            'limit': limit,
+            'exported': exported
         }, Settlements.GET_SETTLEMENTS)
 
     def get_by_id(self, settlement_id):
