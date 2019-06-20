@@ -36,6 +36,19 @@ class Settlements(ApiBase):
             Dict in Settlement schema.
         """
         return self._get_request({}, Settlements.GET_SETTLEMENT_BY_ID.format(settlement_id))
+    
+    def get_all(self):
+        """
+        Get all the settlements based on paginated call
+        """
+
+        count = self.count()['count']
+        objects = []
+        page_size = 300
+        for i in range(0, count, page_size):
+            segment = self.get(offset=i, limit=page_size)
+            objects = objects + segment['data']
+        return objects
 
     def count(self, updated_at=None):
         """Get the number of Settlements that satisfy the parameters.
