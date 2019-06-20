@@ -60,19 +60,6 @@ class Employees(ApiBase):
         '''
         return self._get_request({}, Employees.GET_EMPLOYEE_ADMIN)
 
-    def get_all(self):
-        """
-        Get all the Employees based on paginated call
-        """
-
-        count = self.count()['count']
-        objects = []
-        page_size = 300
-        for i in range(0, count, page_size):
-            segment = self.get(offset=i, limit=page_size)
-            objects = objects + segment['data']
-        return objects
-
     def count(self, updated_at=None):
         """Get the count of existing Employees.
 

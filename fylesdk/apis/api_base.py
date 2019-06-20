@@ -26,6 +26,19 @@ class ApiBase:
         """
         self.__server_url = server_url
 
+    def get_all(self):
+        """
+        Get all the Objects based on paginated call
+        """
+
+        count = self.count()['count']
+        objects = []
+        page_size = 300
+        for i in range(0, count, page_size):
+            segment = self.get(offset=i, limit=page_size)
+            objects = objects + segment['data']
+        return objects
+
 
     def _get_request(self, params, api_url):
         """Create a HTTP GET request.
