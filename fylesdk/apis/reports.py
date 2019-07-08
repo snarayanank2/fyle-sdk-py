@@ -29,7 +29,8 @@ class Reports(ApiBase):
             'settled_at': settled_at,
             'reimbursed_at': reimbursed_at,
             'approved_at': approved_at,
-            'exported': exported
+            'exported': exported,
+            'state': state
         }, Reports.GET_REPORTS)
 
     def count(self, updated_at=None, exported=None):
