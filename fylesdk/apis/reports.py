@@ -33,17 +33,25 @@ class Reports(ApiBase):
             'state': state
         }, Reports.GET_REPORTS)
 
-    def count(self, updated_at=None, exported=None):
+    def count(self, updated_at=None, exported=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None):
         """Get the count of Reports that match the parameters.
         
         Parameters:
             updated_at (str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
             exported (bool): If set to true, all Reports that are already submitted will alone be returned. (optional)
-
+            settled_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
+            approved_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
+            reimbursed_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
+            state(str): A parameter to filter reports by the state that they're in. (optional)
+            
         Returns:
             Count of Reports.
         """
         return self._get_request({
             'updated_at': updated_at,
-            'exported': exported
+            'exported': exported,
+            'settled_at': settled_at,
+            'reimbursed_at': reimbursed_at,
+            'approved_at': approved_at,
+            'state': state
         }, Reports.GET_REPORTS_COUNT)
