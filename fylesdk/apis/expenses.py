@@ -27,7 +27,6 @@ class Expenses(ApiBase):
             updated_at (str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
             offset (int): A cursor for use in pagination, offset is an object ID that defines your place in the list. (optional)
             limit (int): A limit on the number of objects to be returned, between 1 and 1000. (optional)
-            submitted (bool): If set to true, all Expenses that are already submitted will alone be returned. (optional)
             settled_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
             approved_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
             reimbursed_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
@@ -42,7 +41,6 @@ class Expenses(ApiBase):
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit,
-            'submitted': submitted,
             'settled_at': settled_at,
             'reimbursed_at': reimbursed_at,
             'approved_at': approved_at,
@@ -51,21 +49,30 @@ class Expenses(ApiBase):
             'fund_source': fund_source
         }, Expenses.GET_EXPENSES)
 
-    def count(self, updated_at=None, exported=None, submitted=None):
+    def count(self, updated_at=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None, verified=None, fund_source=None):
         """Get the count of existing Expenses that match the given parameters.
 
         Parameters:
             updated_at (str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
-            exported (bool): If set to true, all Expenses that are exported alone will be returned. (optional)
-            submitted (bool): If set to true, all Expenses that are already submitted will alone be returned. (optional)
+            settled_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
+            reimbursed_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
+            approved_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
+            state(str): A parameter to filter expenses by the state that they're in. (optional)
+            verified(bool): A parameter to filter verified or unverified expenses. (optional)
+            fund_source(str): A parameter to filter expenses by fund source. (optional)
+
 
         Returns:
             Count of Expenses.
         """
         return self._get_request({
             'updated_at': updated_at,
-            'exported': exported,
-            'submitted': submitted
+            'settled_at': settled_at,
+            'reimbursed_at': reimbursed_at,
+            'approved_at': approved_at,
+            'state': state,
+            'verified': verified,
+            'fund_source': fund_source
         }, Expenses.GET_EXPENSES_COUNT)
 
     def get_by_id(self, expense_id):
