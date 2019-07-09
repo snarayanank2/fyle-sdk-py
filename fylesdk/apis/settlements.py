@@ -37,7 +37,7 @@ class Settlements(ApiBase):
         """
         return self._get_request({}, Settlements.GET_SETTLEMENT_BY_ID.format(settlement_id))
 
-    def count(self, updated_at=None):
+    def count(self, updated_at=None, exported=None):
         """Get the number of Settlements that satisfy the parameters.
 
         Parameters:
@@ -48,5 +48,6 @@ class Settlements(ApiBase):
             Count of Settlements.
         """
         return self._get_request({
-            'updated_at': updated_at
+            'updated_at': updated_at,
+            'exported': exported
         }, Settlements.GET_SETTLEMENTS_COUNT)

@@ -27,18 +27,20 @@ class Advances(ApiBase):
             'exported': exported
         }, Advances.GET_ADVANCES)
 
-    def count(self, updated_at=None, exported=None):
+    def count(self, updated_at=None, exported=None, settled_at=None):
         """Get a count of the existing Advances that match the parameters.
 
         Parameters:
             updated_at (str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
             offset (int): A cursor for use in pagination, offset is an object ID that defines your place in the list. (optional)
             exported (bool): If set to true, all Advances that are exported alone will be returned. (optional)
+            settled_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
 
         Returns:
             Count of Advances.
         """
         return self._get_request({
             'updated_at': updated_at,
-            'exported': exported
+            'exported': exported,
+            'settled_at': settled_at,
         }, Advances.GET_ADVANCES_COUNT)
