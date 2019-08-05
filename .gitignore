@@ -7,3 +7,8 @@ __pycache__
 # Ignore release stuff
 venv/
 release.sh
+
+# Ignore build files
+build/
+dist/
+fylesdk.egg-info/
