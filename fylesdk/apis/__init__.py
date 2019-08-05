@@ -18,6 +18,7 @@ from .hotel_requests import HotelRequests
 from .hotel_bookings import HotelBookings
 from .hotel_booking_cancellations import HotelBookingCancellations
 from .bank_transactions import BankTransactions
+from .files import Files
 
 
 __all__ = [
@@ -40,5 +41,6 @@ __all__ = [
     'HotelRequests',
     'HotelBookings',
     'HotelBookingCancellations',
-    'BankTransactions'
+    'BankTransactions',
+    'Files'
 ]
