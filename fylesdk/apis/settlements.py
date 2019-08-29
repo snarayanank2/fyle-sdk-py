@@ -1,12 +1,13 @@
 from .api_base import ApiBase
 
+
 class Settlements(ApiBase):
     """Class for Settlements APIs."""
 
     GET_SETTLEMENTS = '/api/tpa/v1/settlements'
     GET_SETTLEMENT_BY_ID = '/api/tpa/v1/settlements/{0}'
     GET_SETTLEMENTS_COUNT = '/api/tpa/v1/settlements/count'
-  
+
     def get(self, updated_at=None, offset=None, limit=None, exported=None):
         """Get Settlements that satisfy the parameters.
 
@@ -51,3 +52,16 @@ class Settlements(ApiBase):
             'updated_at': updated_at,
             'exported': exported
         }, Settlements.GET_SETTLEMENTS_COUNT)
+
+    def get_all(self, updated_at=None, exported=None):
+        """
+        Get all the settlements based on paginated call
+        """
+
+        count = self.count(updated_at, exported)['count']
+        settlements = []
+        page_size = 300
+        for i in range(0, count, page_size):
+            segment = self.get(offset=i, limit=page_size, updated_at=updated_at, exported=exported)
+            settlements = settlements + segment['data']
+        return settlements
