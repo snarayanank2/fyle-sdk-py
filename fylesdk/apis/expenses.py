@@ -107,11 +107,34 @@ class Expenses(ApiBase):
         """
         Get all the advances based on paginated call
         """
+        expenses = []
+
+        if len(settlement_id) > 40:
+            pages = range(0, len(settlement_id), 40)
+            chunks = []
+
+            for i in range(0, len(pages)-1):
+                chunks.append(settlement_id[pages[i]:pages[i+1]])
+            chunks.append(settlement_id[pages[len(pages)-1]:])
+
+            for chunk in chunks:
+                count = self.count(settlement_id=chunk, updated_at=updated_at, settled_at=settled_at,
+                                   reimbursed_at=reimbursed_at, approved_at=approved_at, state=state,
+                                   verified=verified, fund_source=fund_source)['count']
+                page_size = 300
+                for i in range(0, count, page_size):
+                    segment = self.get(
+                        offset=i, limit=page_size, settlement_id=chunk, updated_at=updated_at,
+                        settled_at=settled_at,
+                        reimbursed_at=reimbursed_at, approved_at=approved_at, state=state,
+                        verified=verified, fund_source=fund_source
+                    )
+                    expenses = expenses + segment['data']
+            return expenses
 
         count = self.count(settlement_id=settlement_id, updated_at=updated_at, settled_at=settled_at,
                            reimbursed_at=reimbursed_at, approved_at=approved_at, state=state,
                            verified=verified, fund_source=fund_source)['count']
-        expenses = []
         page_size = 300
         for i in range(0, count, page_size):
             segment = self.get(
