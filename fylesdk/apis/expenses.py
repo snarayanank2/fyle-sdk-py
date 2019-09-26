@@ -95,7 +95,7 @@ class Expenses(ApiBase):
         """Get an Expense by Id including the file attachments.
 
         Parameters:
-            expense_id (str): Unique ID to find an Expense. Expense Id is our internal Id, it starts with prefix tx always. (required)
+            expense_id (str): Unique ID to find an Expense. Expense Id is our internal Id, it starts with prefix tx always.(required)
 
         Returns:
             Dict in Expense schema.
@@ -105,11 +105,11 @@ class Expenses(ApiBase):
     def get_all(self, settlement_id=None, updated_at=None, settled_at=None, reimbursed_at=None, approved_at=None,
                 state=None, verified=None, fund_source=None):
         """
-        Get all the advances based on paginated call
+        Get all the Expenses based on paginated call
         """
         expenses = []
 
-        if len(settlement_id) > 40:
+        if settlement_id and len(settlement_id) > 40:
             pages = range(0, len(settlement_id), 40)
             chunks = []
 

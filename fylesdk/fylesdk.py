@@ -28,6 +28,7 @@ class FyleSDK:
         self.Reports = Reports()
         self.Categories = Categories()
         self.Advances = Advances()
+        self.AdvanceRequests = AdvanceRequests()
         self.Refunds = Refunds()
         self.Reimbursements = Reimbursements()
         self.Settlements = Settlements()
@@ -49,17 +50,17 @@ class FyleSDK:
         self.update_access_token()
         self.set_server_url()
 
-
     def update_access_token(self):
         """Update the access token and change it in all API objects."""
-        
+
         access_token = self.__get_access_token()
-        
+
         self.Employees.change_access_token(access_token)
         self.Expenses.change_access_token(access_token)
         self.Reports.change_access_token(access_token)
         self.Categories.change_access_token(access_token)
         self.Advances.change_access_token(access_token)
+        self.AdvanceRequests.change_access_token(access_token)
         self.Refunds.change_access_token(access_token)
         self.Reimbursements.change_access_token(access_token)
         self.Settlements.change_access_token(access_token)
@@ -77,17 +78,17 @@ class FyleSDK:
         self.BankTransactions.change_access_token(access_token)
         self.Files.change_access_token(access_token)
 
-    
     def set_server_url(self):
         """Update the access token and change it in all API objects."""
-        
+
         base_url = self.__base_url
-        
+
         self.Employees.set_server_url(base_url)
         self.Expenses.set_server_url(base_url)
         self.Reports.set_server_url(base_url)
         self.Categories.set_server_url(base_url)
         self.Advances.set_server_url(base_url)
+        self.AdvanceRequests.set_server_url(base_url)
         self.Refunds.set_server_url(base_url)
         self.Reimbursements.set_server_url(base_url)
         self.Settlements.set_server_url(base_url)
@@ -105,8 +106,6 @@ class FyleSDK:
         self.BankTransactions.set_server_url(base_url)
         self.Files.set_server_url(base_url)
 
-
-
     def __get_access_token(self):
         """Get the access token using a HTTP post.
         
@@ -120,14 +119,14 @@ class FyleSDK:
             'client_id': self.__client_id,
             'client_secret': self.__client_secret
         }
-        
+
         token_url = FyleSDK.TOKEN_URL.format(self.__base_url)
         response = requests.post(token_url, data=api_data)
 
         if response.status_code == 200:
             access_token = json.loads(response.text)['access_token']
             return access_token
-        
+
         elif response.status_code == 401:
             raise UnauthorizedClientError('Wrong client secret or/and refresh token', response.text)
 

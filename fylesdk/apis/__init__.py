@@ -3,6 +3,7 @@ from .expenses import Expenses
 from .reports import Reports
 from .categories import Categories
 from .advances import Advances
+from .advance_requests import AdvanceRequests
 from .refunds import Refunds
 from .reimbursements import Reimbursements
 from .settlements import Settlements
@@ -27,6 +28,7 @@ __all__ = [
     'Reports',
     'Categories',
     'Advances',
+    'AdvanceRequests',
     'Refunds',
     'Reimbursements',
     'Settlements',
