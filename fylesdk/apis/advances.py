@@ -56,12 +56,12 @@ class Advances(ApiBase):
 
     def get_all(self, updated_at=None, exported=None, settled_at=None, settlement_id=None):
         """
-        Get all the advances based on paginated call
+        Get all the Advances based on paginated call
         """
 
         advances = []
 
-        if len(settlement_id) > 40:
+        if settlement_id and len(settlement_id) > 40:
             pages = range(0, len(settlement_id), 40)
             chunks = []
             for i in range(0, len(pages)-1):
@@ -84,7 +84,8 @@ class Advances(ApiBase):
                     advances = advances + segment['data']
             return advances
 
-        count = self.count(updated_at, exported, settled_at, settlement_id)['count']
+        count = self.count(updated_at=updated_at, exported=exported, settled_at=settled_at,
+                           settlement_id=settlement_id)['count']
 
         page_size = 300
         
