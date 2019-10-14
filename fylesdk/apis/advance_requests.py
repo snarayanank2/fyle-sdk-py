@@ -69,7 +69,7 @@ class AdvanceRequests(ApiBase):
         advance_requests = []
         page_size = 300
         for i in range(0, count, page_size):
-            segment = self.get(offset=i, limit=page_size, updated_at=updated_at, exported=exported,
+            segment = self.get(offset=i, limit=page_size, updated_at=updated_at, exported=exported, state=state,
                                approved_at=approved_at)
             advance_requests = advance_requests + segment['data']
         return advance_requests
