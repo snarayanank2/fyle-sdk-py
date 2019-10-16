@@ -79,7 +79,7 @@ class FyleSDK:
         self.Files.change_access_token(access_token)
 
     def set_server_url(self):
-        """Update the access token and change it in all API objects."""
+        """Set the Base URL in all API objects."""
 
         base_url = self.__base_url
 
