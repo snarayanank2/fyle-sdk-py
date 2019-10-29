@@ -6,7 +6,7 @@ class TripRequests(ApiBase):
     GET_TRIP_REQUESTS = '/api/tpa/v1/trip_requests'
     GET_TRIP_REQUESTS_COUNT = '/api/tpa/v1/trip_requests/count'
   
-    def get(self, updated_at=None, offset=None, limit=None, exported=None):
+    def get(self, updated_at=None, offset=None, limit=None):
         """Get a list of existing Trip Request matching the parameters.
 
         Parameters:
@@ -23,7 +23,7 @@ class TripRequests(ApiBase):
             'limit': limit
         }, TripRequests.GET_TRIP_REQUESTS)
 
-    def count(self, updated_at=None, exported=None):
+    def count(self, updated_at=None):
         """Get the count of existing Trip Requests.
 
         Parameters:
