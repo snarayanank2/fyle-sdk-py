@@ -1,12 +1,13 @@
 from .api_base import ApiBase
 
+
 class Reimbursements(ApiBase):
     """Class for Reimbursements APIs."""
 
     GET_REIMBURSEMENTS = '/api/tpa/v1/reimbursements'
     GET_REIMBURSEMENT_BY_ID = '/api/tpa/v1/reimbursements/{0}'
     GET_REIMBURSEMENTS_COUNT = '/api/tpa/v1/reimbursements/count'
-  
+
     def get(self, updated_at=None, offset=None, limit=None, exported=None):
         """Get Reimbursments that satisfy the parameters.
 
@@ -51,3 +52,16 @@ class Reimbursements(ApiBase):
             'updated_at': updated_at,
             'exported': exported
         }, Reimbursements.GET_REIMBURSEMENTS_COUNT)
+
+    def get_all(self, updated_at=None, exported=None):
+        """
+        Get all the reimbursements based on paginated call
+        """
+
+        count = self.count(updated_at, exported)['count']
+        reimbursements = []
+        page_size = 300
+        for i in range(0, count, page_size):
+            segment = self.get(offset=i, limit=page_size, updated_at=updated_at, exported=exported)
+            reimbursements = reimbursements + segment['data']
+        return reimbursements
