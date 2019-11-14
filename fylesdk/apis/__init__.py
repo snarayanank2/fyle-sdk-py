@@ -18,7 +18,7 @@ from .transportation_booking_cancellations import TransportationBookingCancellat
 from .hotel_requests import HotelRequests
 from .hotel_bookings import HotelBookings
 from .hotel_booking_cancellations import HotelBookingCancellations
-from .bank_transactions import BankTransactions
+from .corporate_credit_card_expenses import CorporateCreditCardExpenses
 from .files import Files
 
 
@@ -43,6 +43,6 @@ __all__ = [
     'HotelRequests',
     'HotelBookings',
     'HotelBookingCancellations',
-    'BankTransactions',
+    'CorporateCreditCardExpenses',
     'Files'
 ]

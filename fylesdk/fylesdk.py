@@ -43,7 +43,7 @@ class FyleSDK:
         self.HotelRequests = HotelRequests()
         self.HotelBookings = HotelBookings()
         self.HotelBookingCancellations = HotelBookingCancellations()
-        self.BankTransactions = BankTransactions()
+        self.CorporateCreditCardExpenses = CorporateCreditCardExpenses()
         self.Files = Files()
 
         # get the access token
@@ -75,7 +75,7 @@ class FyleSDK:
         self.HotelRequests.change_access_token(access_token)
         self.HotelBookings.change_access_token(access_token)
         self.HotelBookingCancellations.change_access_token(access_token)
-        self.BankTransactions.change_access_token(access_token)
+        self.CorporateCreditCardExpenses.change_access_token(access_token)
         self.Files.change_access_token(access_token)
 
     def set_server_url(self):
@@ -103,7 +103,7 @@ class FyleSDK:
         self.HotelRequests.set_server_url(base_url)
         self.HotelBookings.set_server_url(base_url)
         self.HotelBookingCancellations.set_server_url(base_url)
-        self.BankTransactions.set_server_url(base_url)
+        self.CorporateCreditCardExpenses.set_server_url(base_url)
         self.Files.set_server_url(base_url)
 
     def __get_access_token(self):
