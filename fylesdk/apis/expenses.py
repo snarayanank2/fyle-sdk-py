@@ -22,7 +22,7 @@ class Expenses(ApiBase):
         return self._post_request(data, Expenses.POST_EXPENSE)
 
     def get(self, updated_at=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None, offset=None,
-            verified=None, limit=None, fund_source=None, settlement_id=None, exported=None):
+            verified=None, limit=None, fund_source=None, settlement_id=None, exported=None, spent_at=None, report_id=None):
         """Get a list of existing Expenses, excluding the file attachments, that match the parameters.
         
         Parameters:
@@ -42,7 +42,9 @@ class Expenses(ApiBase):
             fund_source(str): A parameter to filter expenses by fund source. (optional)
             settlement_id(str): List of settlement ids.
             exported (bool): If set to true, all Settlements that are exported alone will be returned. (optional)
-
+            spent_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern.
+            (optional)
+            report_id(str): List of report ids.
         Returns:
             List with dicts in Expenses schema.
         """
@@ -57,7 +59,9 @@ class Expenses(ApiBase):
             'verified': verified,
             'fund_source': fund_source,
             'settlement_id': settlement_id,
-            'exported': exported
+            'exported': exported,
+            'spent_at': spent_at,
+            'report_id': report_id
         }, Expenses.GET_EXPENSES)
 
     def count(self, updated_at=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None,
