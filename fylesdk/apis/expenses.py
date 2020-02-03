@@ -65,7 +65,7 @@ class Expenses(ApiBase):
         }, Expenses.GET_EXPENSES)
 
     def count(self, updated_at=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None,
-              verified=None, fund_source=None, settlement_id=None, exported=None):
+              verified=None, fund_source=None, settlement_id=None, exported=None, spent_at=None, report_id=None):
         """Get the count of existing Expenses that match the given parameters.
 
         Parameters:
@@ -82,6 +82,9 @@ class Expenses(ApiBase):
             fund_source(str): A parameter to filter expenses by fund source. (optional)
             settlement_id(str): List of settlement ids.
             exported (bool): If set to true, all Settlements that are exported alone will be returned. (optional)
+            spent_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern.
+            (optional)
+            report_id(str): List of report ids.
 
         Returns:
             Count of Expenses.
@@ -95,7 +98,9 @@ class Expenses(ApiBase):
             'verified': verified,
             'fund_source': fund_source,
             'settlement_id': settlement_id,
-            'exported': exported
+            'exported': exported,
+            'spent_at': spent_at,
+            'report_id': report_id
         }, Expenses.GET_EXPENSES_COUNT)
 
     def get_by_id(self, expense_id):
@@ -110,7 +115,7 @@ class Expenses(ApiBase):
         return self._get_request({}, Expenses.GET_EXPENSE_BY_ID.format(expense_id))
 
     def get_all(self, settlement_id=None, updated_at=None, settled_at=None, reimbursed_at=None, approved_at=None,
-                state=None, verified=None, fund_source=None, exported=None):
+                state=None, verified=None, fund_source=None, exported=None, spent_at=None, report_id=None):
         """
         Get all the Expenses based on paginated call
         """
@@ -127,27 +132,50 @@ class Expenses(ApiBase):
             for chunk in chunks:
                 count = self.count(settlement_id=chunk, updated_at=updated_at, settled_at=settled_at,
                                    reimbursed_at=reimbursed_at, approved_at=approved_at, state=state,
-                                   verified=verified, fund_source=fund_source, exported=exported)['count']
+                                   verified=verified, fund_source=fund_source, exported=exported, spent_at=spent_at, report_id=report_id)['count']
                 page_size = 300
                 for i in range(0, count, page_size):
                     segment = self.get(
                         offset=i, limit=page_size, settlement_id=chunk, updated_at=updated_at,
                         settled_at=settled_at,
                         reimbursed_at=reimbursed_at, approved_at=approved_at, state=state,
-                        verified=verified, fund_source=fund_source, exported=exported
+                        verified=verified, fund_source=fund_source, exported=exported, spent_at=spent_at, report_id=report_id
+                    )
+                    expenses = expenses + segment['data']
+            return expenses
+
+        if report_id and len(report_id) > 40:
+            pages = range(0, len(report_id), 40)
+            chunks = []
+
+            for i in range(0, len(pages)-1):
+                chunks.append(report_id[pages[i]:pages[i+1]])
+            chunks.append(report_id[pages[len(pages)-1]:])
+
+            for chunk in chunks:
+                count = self.count(settlement_id=settlement_id, updated_at=updated_at, settled_at=settled_at,
+                                   reimbursed_at=reimbursed_at, approved_at=approved_at, state=state,
+                                   verified=verified, fund_source=fund_source, exported=exported, spent_at=spent_at, report_id=chunk)['count']
+                page_size = 300
+                for i in range(0, count, page_size):
+                    segment = self.get(
+                        offset=i, limit=page_size, settlement_id=settlement_id, updated_at=updated_at,
+                        settled_at=settled_at,
+                        reimbursed_at=reimbursed_at, approved_at=approved_at, state=state,
+                        verified=verified, fund_source=fund_source, exported=exported, spent_at=spent_at, report_id=chunk
                     )
                     expenses = expenses + segment['data']
             return expenses
 
         count = self.count(settlement_id=settlement_id, updated_at=updated_at, settled_at=settled_at,
                            reimbursed_at=reimbursed_at, approved_at=approved_at, state=state,
-                           verified=verified, fund_source=fund_source, exported=exported)['count']
+                           verified=verified, fund_source=fund_source, exported=exported, spent_at=spent_at, report_id=report_id)['count']
         page_size = 300
         for i in range(0, count, page_size):
             segment = self.get(
                 offset=i, limit=page_size, settlement_id=settlement_id, updated_at=updated_at, settled_at=settled_at,
                 reimbursed_at=reimbursed_at, approved_at=approved_at, state=state,
-                verified=verified, fund_source=fund_source, exported=exported
+                verified=verified, fund_source=fund_source, exported=exported, spent_at=spent_at, report_id=report_id
             )
             expenses = expenses + segment['data']
         return expenses
