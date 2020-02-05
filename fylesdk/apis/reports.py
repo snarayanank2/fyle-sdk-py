@@ -55,3 +55,16 @@ class Reports(ApiBase):
             'approved_at': approved_at,
             'state': state
         }, Reports.GET_REPORTS_COUNT)
+
+    def get_all(self, updated_at=None, exported=None):
+        """
+        Get all the reports based on paginated call
+        """
+
+        count = self.count(updated_at, exported)['count']
+        reports = []
+        page_size = 300
+        for i in range(0, count, page_size):
+            segment = self.get(offset=i, limit=page_size, updated_at=updated_at, exported=exported)
+            reports = reports + segment['data']
+        return reports
