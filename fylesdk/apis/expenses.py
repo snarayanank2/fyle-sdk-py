@@ -123,7 +123,7 @@ class Expenses(ApiBase):
         """
         expenses = []
 
-        if (settlement_id and len(settlement_id) > 40) and (report_id and len(report_id) > 40):
+        if (settlement_id and len(settlement_id) > 20) and (report_id and len(report_id) > 20):
             settlement_pages = range(0, len(settlement_id), 40)
             settlement_chunks = []
             report_pages = range(0, len(report_id), 40)
