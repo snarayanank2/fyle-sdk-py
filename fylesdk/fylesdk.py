@@ -21,6 +21,7 @@ class FyleSDK:
         self.__client_id = client_id
         self.__client_secret = client_secret
         self.__refresh_token = refresh_token
+        self.access_token = None
 
         # create an object for each api
         self.Employees = Employees()
@@ -125,6 +126,7 @@ class FyleSDK:
 
         if response.status_code == 200:
             access_token = json.loads(response.text)['access_token']
+            self.access_token = access_token
             return access_token
 
         elif response.status_code == 401:
