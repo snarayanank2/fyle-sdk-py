@@ -108,7 +108,7 @@ class CorporateCreditCardExpenses(ApiBase):
                 count = self.count(settlement_id=chunk, updated_at=updated_at, spent_at=spent_at,
                                    exported=exported, personal=personal, transaction_type=transaction_type,
                                    state=state, reimbursement_state=reimbursement_state)['count']
-                page_size = 300
+                page_size = 200
                 for i in range(0, count, page_size):
                     segment = self.get(
                         offset=i, limit=page_size, settlement_id=chunk, updated_at=updated_at, spent_at=spent_at,
@@ -121,7 +121,7 @@ class CorporateCreditCardExpenses(ApiBase):
         count = self.count(settlement_id=settlement_id, updated_at=updated_at, spent_at=spent_at,
                            exported=exported, personal=personal, transaction_type=transaction_type,
                            state=state, reimbursement_state=reimbursement_state)['count']
-        page_size = 300
+        page_size = 200
         for i in range(0, count, page_size):
             segment = self.get(
                 offset=i, limit=page_size, settlement_id=settlement_id, updated_at=updated_at, spent_at=spent_at,

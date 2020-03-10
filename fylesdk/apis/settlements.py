@@ -60,7 +60,7 @@ class Settlements(ApiBase):
 
         count = self.count(updated_at, exported)['count']
         settlements = []
-        page_size = 300
+        page_size = 200
         for i in range(0, count, page_size):
             segment = self.get(offset=i, limit=page_size, updated_at=updated_at, exported=exported)
             settlements = settlements + segment['data']

@@ -71,7 +71,7 @@ class Advances(ApiBase):
             for chunk in chunks:
                 count = self.count(updated_at, exported, settled_at, chunk)['count']
 
-                page_size = 300
+                page_size = 200
                 for i in range(0, count, page_size):
                     segment = self.get(
                         offset=i,
@@ -87,7 +87,7 @@ class Advances(ApiBase):
         count = self.count(updated_at=updated_at, exported=exported, settled_at=settled_at,
                            settlement_id=settlement_id)['count']
 
-        page_size = 300
+        page_size = 200
         
         for i in range(0, count, page_size):
             segment = self.get(
