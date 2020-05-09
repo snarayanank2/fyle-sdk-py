@@ -20,6 +20,7 @@ from .hotel_bookings import HotelBookings
 from .hotel_booking_cancellations import HotelBookingCancellations
 from .corporate_credit_card_expenses import CorporateCreditCardExpenses
 from .files import Files
+from .jobs import FyleJobs
 
 
 __all__ = [
@@ -44,5 +45,6 @@ __all__ = [
     'HotelBookings',
     'HotelBookingCancellations',
     'CorporateCreditCardExpenses',
-    'Files'
+    'Files',
+    'FyleJobs'
 ]

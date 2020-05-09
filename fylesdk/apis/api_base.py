@@ -2,13 +2,14 @@ from ..exceptions import *
 import requests
 import json
 
+
 class ApiBase:
     """The base class for all API classes."""
 
     def __init__(self):
         self.__access_token = None
         self.__server_url = None
-
+        self.__jobs_url = None
 
     def change_access_token(self, access_token):
         """Change the old access token with the new one.
@@ -17,7 +18,7 @@ class ApiBase:
             access_token (str): The new access token.
         """
         self.__access_token = access_token
-    
+
     def set_server_url(self, server_url):
         """Set the server URL dynamically upon creating a connction
 
@@ -38,7 +39,6 @@ class ApiBase:
             segment = self.get(offset=i, limit=page_size)
             objects = objects + segment['data']
         return objects
-
 
     def _get_request(self, params, api_url):
         """Create a HTTP GET request.
@@ -66,8 +66,8 @@ class ApiBase:
                 api_params[k] = p
 
         response = requests.get(
-            '{0}{1}'.format(self.__server_url, api_url), 
-            headers=api_headers, 
+            '{0}{1}'.format(self.__server_url, api_url),
+            headers=api_headers,
             params=api_params
         )
 
@@ -95,8 +95,7 @@ class ApiBase:
 
         else:
             raise FyleSDKError('Error: {0}'.format(response.status_code), response.text)
-        
-        
+
     def _post_request(self, data, api_url):
         """Create a HTTP post request.
 
@@ -109,11 +108,103 @@ class ApiBase:
         """
 
         api_headers = {'Authorization': 'Bearer {0}'.format(self.__access_token)}
-        
+
         response = requests.post(
             '{0}{1}'.format(self.__server_url, api_url),
             headers=api_headers,
             json=data
+        )
+
+        if response.status_code == 200:
+            result = json.loads(response.text)
+            return result
+
+        elif response.status_code == 400:
+            raise WrongParamsError('Some of the parameters are wrong', response.text)
+
+        elif response.status_code == 401:
+            raise InvalidTokenError('Invalid token, try to refresh it', response.text)
+
+        elif response.status_code == 403:
+            raise NoPrivilegeError('Forbidden, the user has insufficient privilege', response.text)
+
+        elif response.status_code == 404:
+            raise NotFoundItemError('Not found item with ID', response.text)
+
+        elif response.status_code == 498:
+            raise ExpiredTokenError('Expired token, try to refresh it', response.text)
+
+        elif response.status_code == 500:
+            raise InternalServerError('Internal server error', response.text)
+
+        else:
+            raise FyleSDKError('Error: {0}'.format(response.status_code), response.text)
+
+    def set_jobs_url(self, jobs_url):
+        """Set the Jobs URL dynamically upon creating a connction
+
+        Parameters:
+            jobs_url(str): The current Jobs URL
+        """
+        self.__jobs_url = jobs_url
+        print('Logging Jobs URL inside set_jobs_url function - ', jobs_url)
+
+    def post_job_request(self, data):
+        """
+        Post request
+        :param data:
+        :return:
+        """
+
+        api_headers = {
+            'content-type': 'application/json',
+            'Authorization': 'Bearer {0}'.format(self.__access_token)
+        }
+
+        response = requests.post(
+            url=self.__jobs_url,
+            headers=api_headers,
+            json=data
+        )
+
+        if response.status_code == 200:
+            result = json.loads(response.text)
+            return result
+
+        elif response.status_code == 400:
+            raise WrongParamsError('Some of the parameters are wrong', response.text)
+
+        elif response.status_code == 401:
+            raise InvalidTokenError('Invalid token, try to refresh it', response.text)
+
+        elif response.status_code == 403:
+            raise NoPrivilegeError('Forbidden, the user has insufficient privilege', response.text)
+
+        elif response.status_code == 404:
+            raise NotFoundItemError('Not found item with ID', response.text)
+
+        elif response.status_code == 498:
+            raise ExpiredTokenError('Expired token, try to refresh it', response.text)
+
+        elif response.status_code == 500:
+            raise InternalServerError('Internal server error', response.text)
+
+        else:
+            raise FyleSDKError('Error: {0}'.format(response.status_code), response.text)
+
+    def delete_job_request(self, job_id):
+        """
+        delete request
+        :param job_id:
+        :return:
+        """
+
+        api_headers = {
+            'Authorization': 'Bearer {0}'.format(self.__access_token)
+        }
+        response = requests.delete(
+            '{0}{1}'.format(self.__jobs_url, job_id),
+            headers=api_headers,
         )
 
         if response.status_code == 200:
