@@ -3,8 +3,8 @@ from typing import Dict
 from .api_base import ApiBase
 
 
-class FyleJobs(ApiBase):
-    """Class for Fyle Jobs APIs."""
+class Jobs(ApiBase):
+    """Class for Jobs APIs."""
 
     def trigger_now(self, callback_url: str, callback_method: str, org_user_id: str,
                     job_description: str, object_id: str, payload: any = None,
@@ -40,9 +40,8 @@ class FyleJobs(ApiBase):
             },
             'org_user_id': org_user_id
         }
-        print('Logging User Profile - ', org_user_id)
 
-        response = self.post_job_request(body)
+        response = self._post_request(body, api_url='/v2/jobs')
         return response
 
     def trigger_interval(self, callback_url: str, callback_method: str,
@@ -87,10 +86,10 @@ class FyleJobs(ApiBase):
             'org_user_id': org_user_id
         }
 
-        response = self.post_job_request(body)
+        response = self._post_request(body, api_url='/v2/jobs')
         return response
 
-    def delete_job(self, job_id):
+    def delete(self, job_id):
         """
         Delete job
         :param job_id: id of the job to delete

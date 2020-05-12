@@ -20,7 +20,7 @@ class ApiBase:
         self.__access_token = access_token
 
     def set_server_url(self, server_url):
-        """Set the server URL dynamically upon creating a connction
+        """Set the server URL dynamically upon creating a connection
 
         Parameters:
             server_url(str): The current server URL
@@ -147,50 +147,6 @@ class ApiBase:
             jobs_url(str): The current Jobs URL
         """
         self.__jobs_url = jobs_url
-        print('Logging Jobs URL inside set_jobs_url function - ', jobs_url)
-
-    def post_job_request(self, data):
-        """
-        Post request
-        :param data:
-        :return:
-        """
-
-        api_headers = {
-            'content-type': 'application/json',
-            'Authorization': 'Bearer {0}'.format(self.__access_token)
-        }
-
-        response = requests.post(
-            url=self.__jobs_url,
-            headers=api_headers,
-            json=data
-        )
-
-        if response.status_code == 200:
-            result = json.loads(response.text)
-            return result
-
-        elif response.status_code == 400:
-            raise WrongParamsError('Some of the parameters are wrong', response.text)
-
-        elif response.status_code == 401:
-            raise InvalidTokenError('Invalid token, try to refresh it', response.text)
-
-        elif response.status_code == 403:
-            raise NoPrivilegeError('Forbidden, the user has insufficient privilege', response.text)
-
-        elif response.status_code == 404:
-            raise NotFoundItemError('Not found item with ID', response.text)
-
-        elif response.status_code == 498:
-            raise ExpiredTokenError('Expired token, try to refresh it', response.text)
-
-        elif response.status_code == 500:
-            raise InternalServerError('Internal server error', response.text)
-
-        else:
-            raise FyleSDKError('Error: {0}'.format(response.status_code), response.text)
 
     def delete_job_request(self, job_id):
         """

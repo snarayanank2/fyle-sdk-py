@@ -46,11 +46,18 @@ class FyleSDK:
         self.HotelBookingCancellations = HotelBookingCancellations()
         self.CorporateCreditCardExpenses = CorporateCreditCardExpenses()
         self.Files = Files()
-        self.FyleJobs = FyleJobs()
+        self.Jobs = Jobs()
 
         # get the access token
         self.update_access_token()
         self.set_server_url()
+
+        if self.set_server_url() == 'https://staging.fyle.in':
+            jobs_base_url = 'https://jobs.staging.fyle.in'
+        else:
+            jobs_base_url = 'https://jobs.app.fyle.in'
+
+        self.Jobs.set_server_url(jobs_base_url)
 
     def update_access_token(self):
         """Update the access token and change it in all API objects."""
@@ -79,16 +86,12 @@ class FyleSDK:
         self.HotelBookingCancellations.change_access_token(access_token)
         self.CorporateCreditCardExpenses.change_access_token(access_token)
         self.Files.change_access_token(access_token)
-        self.FyleJobs.change_access_token(access_token)
+        self.Jobs.change_access_token(access_token)
 
     def set_server_url(self):
         """Set the Base URL in all API objects."""
 
         base_url = self.__base_url
-        if base_url == 'https://app.fyle.in':
-            jobs_base_url = 'https://jobs.app.fyle.in/v2/jobs'
-        else:
-            jobs_base_url = 'https://jobs.staging.fyle.in/v2/jobs'
 
         self.Employees.set_server_url(base_url)
         self.Expenses.set_server_url(base_url)
@@ -112,7 +115,6 @@ class FyleSDK:
         self.HotelBookingCancellations.set_server_url(base_url)
         self.CorporateCreditCardExpenses.set_server_url(base_url)
         self.Files.set_server_url(base_url)
-        self.FyleJobs.set_jobs_url(jobs_base_url)
 
     def __get_access_token(self):
         """Get the access token using a HTTP post.
