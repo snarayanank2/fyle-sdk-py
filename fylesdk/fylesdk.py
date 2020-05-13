@@ -15,12 +15,13 @@ class FyleSDK:
 
     TOKEN_URL = '{}/api/oauth/token'
 
-    def __init__(self, base_url, client_id, client_secret, refresh_token):
+    def __init__(self, base_url, client_id, client_secret, refresh_token, jobs_url=None):
         # store the credentials
         self.__base_url = base_url
         self.__client_id = client_id
         self.__client_secret = client_secret
         self.__refresh_token = refresh_token
+        self.__jobs_url = jobs_url
         self.access_token = None
 
         # create an object for each api
@@ -51,13 +52,6 @@ class FyleSDK:
         # get the access token
         self.update_access_token()
         self.set_server_url()
-
-        if self.set_server_url() == 'https://staging.fyle.in':
-            jobs_base_url = 'https://jobs.staging.fyle.in'
-        else:
-            jobs_base_url = 'https://jobs.app.fyle.in'
-
-        self.Jobs.set_server_url(jobs_base_url)
 
     def update_access_token(self):
         """Update the access token and change it in all API objects."""
@@ -92,6 +86,7 @@ class FyleSDK:
         """Set the Base URL in all API objects."""
 
         base_url = self.__base_url
+        jobs_url = self.__jobs_url
 
         self.Employees.set_server_url(base_url)
         self.Expenses.set_server_url(base_url)
@@ -115,6 +110,7 @@ class FyleSDK:
         self.HotelBookingCancellations.set_server_url(base_url)
         self.CorporateCreditCardExpenses.set_server_url(base_url)
         self.Files.set_server_url(base_url)
+        self.Jobs.set_server_url(jobs_url)
 
     def __get_access_token(self):
         """Get the access token using a HTTP post.

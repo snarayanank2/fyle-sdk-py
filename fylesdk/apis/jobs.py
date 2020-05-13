@@ -5,6 +5,7 @@ from .api_base import ApiBase
 
 class Jobs(ApiBase):
     """Class for Jobs APIs."""
+    JOBS_URL = '/v2/jobs'
 
     def body_tempate(self, callback_url, callback_method, job_description, job_data_url, object_id, hours,
                      start_datetime, org_user_id, payload):
@@ -21,7 +22,7 @@ class Jobs(ApiBase):
         :param hours: repeat in hours
         :returns: response
         """
-        body = {
+        jobs_payload = {
             'template': {
                 'name': 'http.main',
                 'data': {
@@ -49,7 +50,7 @@ class Jobs(ApiBase):
             },
             'org_user_id': org_user_id
         }
-        return body
+        return jobs_payload
 
     def trigger_now(self, callback_url: str, callback_method: str, org_user_id: str,
                     job_description: str, object_id: str, payload: any = None,
@@ -70,7 +71,7 @@ class Jobs(ApiBase):
         """
         body = self.body_tempate(callback_url, callback_method, job_description, job_data_url, object_id, hours,
                                  start_datetime, org_user_id, payload)
-        response = self._post_request(body, api_url='/v2/jobs')
+        response = self._post_request(body, Jobs.JOBS_URL)
         return response
 
     def trigger_interval(self, callback_url: str, callback_method: str,
@@ -91,7 +92,7 @@ class Jobs(ApiBase):
         """
         body = self.body_tempate(callback_url, callback_method, job_description, job_data_url, object_id, hours,
                                  start_datetime, org_user_id, payload)
-        response = self._post_request(body, api_url='/v2/jobs')
+        response = self._post_request(body, Jobs.JOBS_URL)
         return response
 
     def delete(self, job_id):
