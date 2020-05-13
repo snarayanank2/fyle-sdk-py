@@ -139,7 +139,7 @@ class ApiBase:
                 raise FyleSDKError('Error: {0}'.format(response.status_code), response.text)
 
         else:
-            raise Exception('Please provide jobs url to make a job request')
+            raise FyleSDKError('Please provide jobs url to make a job request')
 
     def delete_job_request(self, job_id):
         """
@@ -182,4 +182,4 @@ class ApiBase:
             else:
                 raise FyleSDKError('Error: {0}'.format(response.status_code), response.text)
         else:
-            raise Exception('Please provide jobs url to make a job request')
+            raise FyleSDKError('Please provide jobs url to make a job request')
