@@ -48,6 +48,49 @@ new_expense = {
     'reimbursable': True
 }
 response = connection.Expenses.post(new_expense)
+
+```
+
+You can also access fyle-jobs using this SDK.
+
+First you'll need to create a connection using the main class FyleSDK with jobs_url.
+```python
+from fylesdk import FyleSDK
+
+connection = FyleSDK(
+    base_url='<YOUR BASE URL>',
+    client_id='<YOUR CLIENT ID>',
+    client_secret='<YOUR CLIENT SECRET>',
+    refresh_token='<YOUR REFRESH TOKEN>',
+    jobs_url='<FYLE JOBS URL>'
+)
+```
+1. After that you'll be able to access *Jobs* API class
+```python
+"""
+USAGE: <FyleSDK INSTANCE>.<API_NAME>.<API_METHOD>(<PARAMETERS>)
+"""
+# Trigger callback immediately
+response = connection.Jobs.trigger_now(
+                callback_url='callback_url',
+                callback_method='POST', object_id='SDK1234', payload={
+                    'ping': 'pong'
+                },
+                job_description='Trigger Now',
+                org_user_id=org_user_id
+)
+
+# Trigger callback on Interval
+response = connection.Jobs.trigger_interval(
+                callback_url='callback_url',
+                callback_method='POST', object_id='SDK1234', payload={
+                    'ping': 'pong'
+                },
+                job_description='Trigger Now',
+                org_user_id=org_user_id,
+                start_datetime='yyyy-MM-ddTHH:mm:ss.SSSZ',
+                hours='1'
+)
 ```
 
 See more details about the usage into the wiki pages of this project.
