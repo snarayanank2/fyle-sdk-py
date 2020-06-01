@@ -48,6 +48,8 @@ class FyleSDK:
         self.CorporateCreditCardExpenses = CorporateCreditCardExpenses()
         self.Files = Files()
         self.Jobs = Jobs()
+        self.Orgs = Orgs()
+        self.ExpensesCustomFields = ExpensesCustomFields()
 
         # get the access token
         self.update_access_token()
@@ -81,6 +83,8 @@ class FyleSDK:
         self.CorporateCreditCardExpenses.change_access_token(access_token)
         self.Files.change_access_token(access_token)
         self.Jobs.change_access_token(access_token)
+        self.Orgs.change_access_token(access_token)
+        self.ExpensesCustomFields.change_access_token(access_token)
 
     def set_server_url(self):
         """Set the Base URL in all API objects."""
@@ -111,6 +115,8 @@ class FyleSDK:
         self.CorporateCreditCardExpenses.set_server_url(base_url)
         self.Files.set_server_url(base_url)
         self.Jobs.set_server_url(jobs_url)
+        self.Orgs.set_server_url(base_url)
+        self.ExpensesCustomFields.set_server_url(base_url)
 
     def __get_access_token(self):
         """Get the access token using a HTTP post.
