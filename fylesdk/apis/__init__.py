@@ -21,6 +21,8 @@ from .hotel_booking_cancellations import HotelBookingCancellations
 from .corporate_credit_card_expenses import CorporateCreditCardExpenses
 from .files import Files
 from .jobs import Jobs
+from .orgs import Orgs
+from .expenses_custom_fields import ExpensesCustomFields
 
 
 __all__ = [
@@ -46,5 +48,7 @@ __all__ = [
     'HotelBookingCancellations',
     'CorporateCreditCardExpenses',
     'Files',
-    'Jobs'
+    'Jobs',
+    'Orgs',
+    'ExpensesCustomFields'
 ]
