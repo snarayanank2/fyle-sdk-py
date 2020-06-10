@@ -100,5 +100,5 @@ class Jobs(ApiBase):
         :param job_id: id of the job to delete
         :return:
         """
-        response = self.delete_job_request(job_id)
+        response = self._delete_job_request(job_id, Jobs.JOBS_URL)
         return response
