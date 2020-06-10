@@ -5,7 +5,7 @@ from .api_base import ApiBase
 
 class Jobs(ApiBase):
     """Class for Jobs APIs."""
-    JOBS_URL = '/v2/jobs'
+    JOBS_URL = '/v2/jobs/'
 
     def trigger_now(self, callback_url: str, callback_method: str, org_user_id: str,
                     job_description: str, object_id: str, payload: any = None,
