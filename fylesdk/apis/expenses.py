@@ -23,7 +23,7 @@ class Expenses(ApiBase):
 
     def get(self, updated_at=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None, offset=None,
             verified=None, limit=None, fund_source=None, settlement_id=None, exported=None, spent_at=None,
-            report_id=None, employee_email=None):
+            report_id=None, employee_email=None, order=None, policy_amount=None):
         """Get a list of existing Expenses, excluding the file attachments, that match the parameters.
 
         Parameters:
@@ -46,8 +46,8 @@ class Expenses(ApiBase):
             spent_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern.
             (optional)
             report_id(str): List of report ids
-            order_by(str): Ordering of result set, supported values are created_at, updated_at (optional)
-            order_by_dir(str): Direction of ordering of result set, supported values are asc, desc (optional)
+            order(str): Ordering of result set with direction, supported values for order are created_at, updated_at
+                        supported values for direction are asc, desc eg created_at.desc (optional)
             policy_amount(str): Expense policy amount in format "<operation>:<amount>", supported ops are gt, lt, gte, lte and eq "gt:0.0001" (optional)
             employee_email(str): A parameter to get expenses of an employee. (optional)
 
@@ -68,8 +68,7 @@ class Expenses(ApiBase):
             'exported': exported,
             'spent_at': spent_at,
             'report_id': report_id,
-            'order_by': order_by,
-            'order_by_dir': order_by_dir,
+            'order': order,
             'policy_amount': policy_amount,
             'employee_email': employee_email
         }, Expenses.GET_EXPENSES)
