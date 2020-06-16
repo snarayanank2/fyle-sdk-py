@@ -5,7 +5,7 @@ class Categories(ApiBase):
 
     GET_CATEGORIES = '/api/tpa/v1/categories'
   
-    def get(self, active_only=None):
+    def get(self, active_only=None, **kwargs):
         """Get a list of the existing Categories in the Organization.
 
         Parameters:
@@ -15,5 +15,6 @@ class Categories(ApiBase):
             List with dicts in Categories schema.
         """
         return self._get_request({
-            'active_only': active_only
+            'active_only': active_only,
+            **kwargs
         }, Categories.GET_CATEGORIES)
