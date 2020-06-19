@@ -141,7 +141,7 @@ class ApiBase:
         else:
             raise FyleSDKError('Please provide jobs url to make a job request')
 
-    def delete_job_request(self, job_id):
+    def _delete_job_request(self, job_id, api_url):
         """
         delete request
         :param job_id:
@@ -153,7 +153,7 @@ class ApiBase:
         }
         if self.__server_url is not None:
             response = requests.delete(
-                '{0}{1}'.format(self.__server_url, job_id),
+                '{0}{1}{2}'.format(self.__server_url, api_url, job_id),
                 headers=api_headers,
             )
 

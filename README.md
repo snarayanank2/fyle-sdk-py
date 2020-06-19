@@ -40,13 +40,13 @@ response = connection.Employees.get()
 response = connection.Reports.count(updated_at='gte:2019-01-01T00:00:00.000Z')
 
 # Create a new Expense of 10 USD, spent at 2019-01-01 and from employee with email user@mail.com
-new_expense = {
+new_expense = [{
     'employee_email': 'user@mail.com',
     'currency': 'USD',
     'amount': 10,
     'spent_at': '2019-01-01T00:00:00.000Z',
     'reimbursable': True
-}
+}]
 response = connection.Expenses.post(new_expense)
 
 ```
