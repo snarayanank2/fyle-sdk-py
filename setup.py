@@ -5,13 +5,13 @@ with open('README.md', 'r') as f:
 
 setuptools.setup(
     name='fylesdk',
-    version='0.16.0',
+    version='0.17.0',
     author='Siva Narayanan',
     author_email='siva@fyle.in',
     description='Python SDK for accessing Fyle APIs',
     license='MIT',
     long_description=long_description,
-    long_description_content_type='text/markdown',  
+    long_description_content_type='text/markdown',
     keywords=['fyle', 'api', 'python', 'sdk'],
     url='https://github.com/fylein/fyle-sdk-py',
     packages=setuptools.find_packages(),
