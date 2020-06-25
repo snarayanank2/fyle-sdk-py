@@ -17,7 +17,7 @@ class Projects(ApiBase):
         """
         return self._post_request(data, Projects.POST_PROJECTS)
 
-    def get(self, active_only=None):
+    def get(self, active_only=None, **kwargs):
         """Get the list of existing Projects.
 
         Parameters:
@@ -27,5 +27,6 @@ class Projects(ApiBase):
             List with dicts in Projects schema.
         """
         return self._get_request({
-            'active_only': active_only
+            'active_only': active_only,
+            **kwargs
         }, Projects.GET_PROJECTS)
