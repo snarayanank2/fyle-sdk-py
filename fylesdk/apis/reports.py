@@ -47,7 +47,7 @@ class Reports(ApiBase):
             'employee_email': employee_email
         }, Reports.GET_REPORTS)
 
-    def count(self, updated_at=None, exported=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None):
+    def count(self, updated_at=None, exported=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None, employee_email=None):
         """Get the count of Reports that match the parameters.
 
         Parameters:
@@ -57,6 +57,7 @@ class Reports(ApiBase):
             approved_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
             reimbursed_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
             state(str): A parameter to filter reports by the state that they're in. (optional)
+            employee_email(str): A parameter to get expenses of an employee. (optional)
 
         Returns:
             Count of Reports.
@@ -67,7 +68,8 @@ class Reports(ApiBase):
             'settled_at': settled_at,
             'reimbursed_at': reimbursed_at,
             'approved_at': approved_at,
-            'state': state
+            'state': state,
+            'employee_email': employee_email
         }, Reports.GET_REPORTS_COUNT)
 
     def get_all(self, updated_at=None, exported=None):

@@ -74,7 +74,8 @@ class Expenses(ApiBase):
         }, Expenses.GET_EXPENSES)
 
     def count(self, updated_at=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None,
-              verified=None, fund_source=None, settlement_id=None, exported=None, spent_at=None, report_id=None):
+              verified=None, fund_source=None, settlement_id=None, exported=None, spent_at=None, report_id=None,
+              employee_email=None, policy_amount=None):
         """Get the count of existing Expenses that match the given parameters.
 
         Parameters:
@@ -94,6 +95,8 @@ class Expenses(ApiBase):
             spent_at(str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern.
             (optional)
             report_id(str): List of report ids.
+            policy_amount(str): Expense policy amount in format "<operation>:<amount>", supported ops are gt, lt, gte, lte and eq "gt:0.0001" (optional)
+            employee_email(str): A parameter to get expenses of an employee. (optional)
 
         Returns:
             Count of Expenses.
@@ -109,7 +112,9 @@ class Expenses(ApiBase):
             'settlement_id': settlement_id,
             'exported': exported,
             'spent_at': spent_at,
-            'report_id': report_id
+            'report_id': report_id,
+            'policy_amount': policy_amount,
+            'employee_email': employee_email
         }, Expenses.GET_EXPENSES_COUNT)
 
     def get_by_id(self, expense_id):
