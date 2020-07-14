@@ -6,6 +6,7 @@ class Expenses(ApiBase):
 
     POST_EXPENSE = '/api/tpa/v1/expenses'
     GET_EXPENSES = '/api/tpa/v1/expenses'
+    DELETE_EXPENSES = '/api/tpa/v1/expenses/delete/bulk'
     GET_EXPENSES_COUNT = '/api/tpa/v1/expenses/count'
     GET_EXPENSE_BY_ID = '/api/tpa/v1/expenses/{0}'
     GET_EXPENSE_ATTACHMENTS = '/api/tpa/v1/expenses/{0}/attachments'
@@ -72,6 +73,17 @@ class Expenses(ApiBase):
             'policy_amount': policy_amount,
             'employee_email': employee_email
         }, Expenses.GET_EXPENSES)
+
+    def delete(self, data):
+        """Delete an Expense or Expenses for an Employee.
+
+        Parameters:
+            List of txn_ids (str): Unique ID to delete an Expense. It starts with prefix tx always. Minimum 1 txn_ids is required.
+        
+        Returns:
+            Dict in Expense schema.
+        """
+        return self._post_request(data, Expenses.DELETE_EXPENSES)
 
     def count(self, updated_at=None, settled_at=None, reimbursed_at=None, approved_at=None, state=None,
               verified=None, fund_source=None, settlement_id=None, exported=None, spent_at=None, report_id=None,
