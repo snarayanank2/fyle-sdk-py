@@ -11,6 +11,12 @@ from .categories import Categories
 from .projects import Projects
 from .refunds import Refunds
 from .balance_transfers import BalanceTransfers
+from .settlements import Settlements
+from .advance_requests import AdvanceRequests
+from .advances import Advances
+from .bank_transactions import BankTransactions
+from .trip_requests import TripRequests
+from .expense_custom_properties import ExpenseCustomProperties
 
 
 class FyleV3:
@@ -29,3 +35,9 @@ class FyleV3:
         self.projects = Projects()
         self.refunds = Refunds()
         self.balance_transfers = BalanceTransfers()
+        self.settlements = Settlements()
+        self.advance_requests = AdvanceRequests()
+        self.advances = Advances()
+        self.bank_transactions = BankTransactions()
+        self.trip_requests = TripRequests()
+        self.expense_custom_properties = ExpenseCustomProperties()
