@@ -14,7 +14,7 @@ class Reimbursements(ApiBase):
     def get(self, limit: int = None, offset: int = None, **kwargs) -> Dict:
         """
         Get Reimbursements
-        :param limit: No of reimbursements to be fetched
+        :param limit: No. of reimbursements to be fetched
         :param offset: Pagination offset
         :return: List of Reimbursement Objects
         """

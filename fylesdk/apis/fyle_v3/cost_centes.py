@@ -15,7 +15,7 @@ class CostCenters(ApiBase):
     def get(self, limit: int = None, offset: int = None, **kwargs) -> Dict:
         """
         Get CostCenters
-        :param limit: No of cost_centers to be fetched
+        :param limit: No. of cost_centers to be fetched
         :param offset: Pagination offset
         :return: List of CostCenter Objects
         """

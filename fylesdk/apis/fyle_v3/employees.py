@@ -15,7 +15,7 @@ class Employees(ApiBase):
     def get(self, limit: int = None, offset: int = None, **kwargs) -> Dict:
         """
         Get Employees
-        :param limit: No of employees to be fetched
+        :param limit: No. of employees to be fetched
         :param offset: Pagination offset
         :return: List of Employee Objects
         """
