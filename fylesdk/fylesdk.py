@@ -67,6 +67,9 @@ class FyleSDK:
         # V3 APIs
         self.v3.expenses.change_access_token(access_token)
         self.v3.employees.change_access_token(access_token)
+        self.v3.orgs.change_access_token(access_token)
+        self.v3.reimbursements.change_access_token(access_token)
+        self.v3.cost_centers.change_access_token(access_token)
 
         # V1 APIs
         self.Employees.change_access_token(access_token)
@@ -100,10 +103,13 @@ class FyleSDK:
 
         base_url = self.__base_url
         jobs_url = self.__jobs_url
-
+        
         # V3 APIs
         self.v3.expenses.set_server_url(base_url)
         self.v3.employees.set_server_url(base_url)
+        self.v3.orgs.set_server_url(base_url)
+        self.v3.reimbursements.set_server_url(base_url)
+        self.v3.cost_centers.set_server_url(base_url)
 
         # V1 APIs
         self.Employees.set_server_url(base_url)

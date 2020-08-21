@@ -12,7 +12,7 @@ class Employees(ApiBase):
     POST_EMPLOYEES = '/v3/employees'
     GET_EMPLOYEES = '/v3/employees'
 
-    def get(self, limit: int = None, offset: int = None) -> Dict:
+    def get(self, limit: int = None, offset: int = None, **kwargs) -> Dict:
         """
         Get Employees
         :param limit: No of employees to be fetched
@@ -21,7 +21,8 @@ class Employees(ApiBase):
         """
         return self._get_request(params={
             'limit': limit,
-            'offset': offset
+            'offset': offset,
+            **kwargs
         }, api_url=self.GET_EMPLOYEES)
 
     def post(self, data: List[Dict], test: bool = False) -> Dict:
