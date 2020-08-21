@@ -1,4 +1,4 @@
-from .api_base import ApiBase
+from fylesdk.apis.api_base import ApiBase
 
 class CostCenters(ApiBase):
     """Class for Cost Centers APIs."""

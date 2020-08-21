@@ -1,4 +1,4 @@
-from .api_base import ApiBase
+from fylesdk.apis.api_base import ApiBase
 
 class Refunds(ApiBase):
     """Class for Refunds APIs."""

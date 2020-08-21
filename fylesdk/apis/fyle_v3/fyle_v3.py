@@ -17,6 +17,9 @@ from .advances import Advances
 from .bank_transactions import BankTransactions
 from .trip_requests import TripRequests
 from .expense_custom_properties import ExpenseCustomProperties
+from .employee_custom_properties import EmployeeCustomProperties
+from .advance_request_custom_properties import AdvanceRequestCustomProperties
+from .trip_request_custom_properties import TripRequestCustomProperties
 
 
 class FyleV3:
@@ -41,3 +44,6 @@ class FyleV3:
         self.bank_transactions = BankTransactions()
         self.trip_requests = TripRequests()
         self.expense_custom_properties = ExpenseCustomProperties()
+        self.employee_custom_properties = EmployeeCustomProperties()
+        self.advance_request_custom_properties = AdvanceRequestCustomProperties()
+        self.trip_request_custom_properties = TripRequestCustomProperties()

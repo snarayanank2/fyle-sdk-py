@@ -1,4 +1,4 @@
-from .api_base import ApiBase
+from fylesdk.apis.api_base import ApiBase
 
 class Orgs(ApiBase):
     """Class for Orgs APIs."""

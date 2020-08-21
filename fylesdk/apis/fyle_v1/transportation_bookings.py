@@ -1,13 +1,13 @@
-from .api_base import ApiBase
+from fylesdk.apis.api_base import ApiBase
 
-class HotelRequests(ApiBase):
-    """Class for Hotel Requests APIs."""
+class TransportationBookings(ApiBase):
+    """Class for Transportation Bookings APIs."""
 
-    GET_HOTEL_REQUESTS = '/api/tpa/v1/hotel_requests'
-    GET_HOTEL_REQUESTS_COUNT = '/api/tpa/v1/hotel_requests/count'
+    GET_TRANSPORTATION_BOOKINGS = '/api/tpa/v1/transportation_bookings'
+    GET_TRANSPORTATION_BOOKINGS_COUNT = '/api/tpa/v1/transportation_bookings/count'
   
     def get(self, trip_request_id=None, updated_at=None, offset=None, limit=None):
-        """Get a list of existing Hotel Request matching the parameters.
+        """Get a list of existing Transportation Booking matching the parameters.
 
         Parameters:
             trip_request_id (str): Unique id of TripRequest object, if this value is passed it returns objects assiocated with a trip. (optional)
@@ -16,26 +16,26 @@ class HotelRequests(ApiBase):
             limit (int): A limit on the number of objects to be returned, between 1 and 1000. (optional)
 
         Returns:
-            List with dicts in HotelRequests schema.
+            List with dicts in TransportationBookings schema.
         """
         return self._get_request({
             'trip_request_id': trip_request_id,
             'updated_at': updated_at,
             'offset': offset,
             'limit': limit
-        }, HotelRequests.GET_HOTEL_REQUESTS)
+        }, TransportationBookings.GET_TRANSPORTATION_BOOKINGS)
 
     def count(self, trip_request_id=None, updated_at=None):
-        """Get the count of existing Hotel Requests.
+        """Get the count of existing Transportation Bookings.
 
         Parameters:
             trip_request_id (str): Unique id of TripRequest object, if this value is passed it returns objects assiocated with a trip. (optional)
             updated_at (str): Date string in yyyy-MM-ddTHH:mm:ss.SSSZ format along with operator in RHS colon pattern. (optional)
 
         Returns:
-            Count of Hotel Requests.
+            Count of Transportation Bookings.
         """
         return self._get_request({
             'trip_request_id': trip_request_id,
             'updated_at': updated_at
-        }, HotelRequests.GET_HOTEL_REQUESTS_COUNT)
+        }, TransportationBookings.GET_TRANSPORTATION_BOOKINGS_COUNT)

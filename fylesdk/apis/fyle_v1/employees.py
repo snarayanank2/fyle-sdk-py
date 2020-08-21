@@ -1,4 +1,4 @@
-from .api_base import ApiBase
+from fylesdk.apis.api_base import ApiBase
 
 class Employees(ApiBase):
     """Class for Employees APIs."""
