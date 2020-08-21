@@ -1,5 +1,6 @@
 from .exceptions import *
 from .apis import *
+from .apis.fyle_v3 import FyleV3
 import requests
 import json
 
@@ -24,7 +25,10 @@ class FyleSDK:
         self.__jobs_url = jobs_url
         self.access_token = None
 
-        # create an object for each api
+        # V3 Instance
+        self.v3 = FyleV3()
+
+        # V1 APIs
         self.Employees = Employees()
         self.Expenses = Expenses()
         self.Reports = Reports()
@@ -60,6 +64,11 @@ class FyleSDK:
 
         access_token = self.__get_access_token()
 
+        # V3 APIs
+        self.v3.expenses.change_access_token(access_token)
+        self.v3.employees.change_access_token(access_token)
+
+        # V1 APIs
         self.Employees.change_access_token(access_token)
         self.Expenses.change_access_token(access_token)
         self.Reports.change_access_token(access_token)
@@ -92,6 +101,11 @@ class FyleSDK:
         base_url = self.__base_url
         jobs_url = self.__jobs_url
 
+        # V3 APIs
+        self.v3.expenses.set_server_url(base_url)
+        self.v3.employees.set_server_url(base_url)
+
+        # V1 APIs
         self.Employees.set_server_url(base_url)
         self.Expenses.set_server_url(base_url)
         self.Reports.set_server_url(base_url)

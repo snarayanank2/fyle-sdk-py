@@ -13,3 +13,6 @@ release.sh
 build/
 dist/
 fylesdk.egg-info/
+
+# dry run files
+dry_run.py
