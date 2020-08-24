@@ -16,7 +16,7 @@ This project requires [Python 3+](https://www.python.org/downloads/) and [Reques
 To use this SDK you'll need these Fyle credentials used for OAuth2 authentication: **client ID**, **client secret** and **refresh token**.
 
 This SDK is very easy to use.
-1. First you'll need to create a connection using the main class FyleSDK.
+* First you'll need to create a connection using the main class FyleSDK.
 ```python
 from fylesdk import FyleSDK
 
@@ -27,7 +27,38 @@ connection = FyleSDK(
     refresh_token='<YOUR REFRESH TOKEN>'
 )
 ```
-2. After that you'll be able to access any of the 18 API classes: *Advances*, *BalanceTransfers*, *Categories*, *CostCenters*, *Employees*, *Expenses*, *Exports*, *HotelBookingCancellations*, *HotelBookings*, *HotelRequests*, *Projects*, *Refunds*, *Reimbursements*, *Reports*, *TransportationBookingCancellations*, *TransportationBookings*, *TransportationRequests*, *TripRequests*.
+
+* Introducing APIs version 3 from version 1.0.0 onwards. These are faster and more performant APIs but are still under development. To access them from the sdk do -
+```python
+# Transactions
+expenses = connection.v3.expenses.get()
+reports = connection.v3.reports.get()
+advances = connection.v3.advances.get()
+bank_transactions = connection.v3.bank_transactions.get()
+refunds = connection.v3.refunds.get()
+
+# Requests
+advance_requests = connection.v3.advance_requests.get()
+trip_requests = connection.v3.trip_requests.get()
+reimbursements = connection.v3.reimbursements.get()
+settlements = connection.v3.settlements.get()
+balance_transfers = connection.v3.balance_transfers.get()
+
+# Organisation Data
+orgs = connection.v3.orgs.get()
+employees = connection.v3.employees.get()
+categories = connection.v3.categories.get()
+projects = connection.v3.projects.get()
+cost_centers = connection.v3.cost_centers.get()
+
+# Custom Properties
+advance_request_custom_properties = connection.v3.advance_request_custom_properties.get()
+trip_request_custom_properties = connection.v3.trip_request_custom_properties.get()
+employee_custom_properties = connection.v3.employee_custom_properties.get()
+expense_custom_properties = connection.v3.expense_custom_properties.get()
+```
+
+*  After that you'll be able to access any of the 18 API classes.
 ```python
 """
 USAGE: <FyleSDK INSTANCE>.<API_NAME>.<API_METHOD>(<PARAMETERS>)
