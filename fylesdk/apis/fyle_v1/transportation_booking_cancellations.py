@@ -1,4 +1,4 @@
-from fylesdk.apis.api_base import ApiBase
+from ..api_base import ApiBase
 
 class TransportationBookingCancellations(ApiBase):
     """Class for Transportation Booking Cancellations APIs."""
