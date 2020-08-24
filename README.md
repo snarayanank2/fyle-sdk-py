@@ -28,7 +28,7 @@ connection = FyleSDK(
 )
 ```
 
-* Introducing APIs version 3 from version 1.0.0 onwards. These are faster and more performant APIs but are still under development. To access them from the sdk do -
+* Introducing APIs version 3 from version 1.0.0 onwards. These are faster and more performant APIs but are still under development. This is how you can access them -
 ```python
 # Transactions
 expenses = connection.v3.expenses.get()
@@ -84,7 +84,7 @@ response = connection.Expenses.post(new_expense)
 
 You can also access fyle-jobs using this SDK.
 
-First you'll need to create a connection using the main class FyleSDK with jobs_url.
+* First you'll need to create a connection using the main class FyleSDK with jobs_url.
 ```python
 from fylesdk import FyleSDK
 
@@ -96,7 +96,7 @@ connection = FyleSDK(
     jobs_url='<FYLE JOBS URL>'
 )
 ```
-1. After that you'll be able to access *Jobs* API class
+* After that you'll be able to access *Jobs* API class
 ```python
 """
 USAGE: <FyleSDK INSTANCE>.<API_NAME>.<API_METHOD>(<PARAMETERS>)
