@@ -58,7 +58,7 @@ employee_custom_properties = connection.v3.employee_custom_properties.get()
 expense_custom_properties = connection.v3.expense_custom_properties.get()
 ```
 
-*  After that you'll be able to access any of the 18 API classes.
+*  You can still access the V1 APIs as before:
 ```python
 """
 USAGE: <FyleSDK INSTANCE>.<API_NAME>.<API_METHOD>(<PARAMETERS>)
