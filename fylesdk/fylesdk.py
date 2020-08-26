@@ -1,5 +1,6 @@
 from .exceptions import *
 from .apis import *
+from .apis.fyle_v3 import FyleV3
 import requests
 import json
 
@@ -24,7 +25,10 @@ class FyleSDK:
         self.__jobs_url = jobs_url
         self.access_token = None
 
-        # create an object for each api
+        # # V3 Instance
+        self.v3 = FyleV3()
+
+        # V1 APIs
         self.Employees = Employees()
         self.Expenses = Expenses()
         self.Reports = Reports()
@@ -60,6 +64,28 @@ class FyleSDK:
 
         access_token = self.__get_access_token()
 
+        # V3 APIs
+        self.v3.expenses.change_access_token(access_token)
+        self.v3.reports.change_access_token(access_token)
+        self.v3.employees.change_access_token(access_token)
+        self.v3.orgs.change_access_token(access_token)
+        self.v3.reimbursements.change_access_token(access_token)
+        self.v3.cost_centers.change_access_token(access_token)
+        self.v3.categories.change_access_token(access_token)
+        self.v3.projects.change_access_token(access_token)
+        self.v3.refunds.change_access_token(access_token)
+        self.v3.balance_transfers.change_access_token(access_token)
+        self.v3.settlements.change_access_token(access_token)
+        self.v3.advance_requests.change_access_token(access_token)
+        self.v3.advances.change_access_token(access_token)
+        self.v3.bank_transactions.change_access_token(access_token)
+        self.v3.trip_requests.change_access_token(access_token)
+        self.v3.expense_custom_properties.change_access_token(access_token)
+        self.v3.employee_custom_properties.change_access_token(access_token)
+        self.v3.trip_request_custom_properties.change_access_token(access_token)
+        self.v3.advance_request_custom_properties.change_access_token(access_token)
+
+        # V1 APIs
         self.Employees.change_access_token(access_token)
         self.Expenses.change_access_token(access_token)
         self.Reports.change_access_token(access_token)
@@ -92,6 +118,28 @@ class FyleSDK:
         base_url = self.__base_url
         jobs_url = self.__jobs_url
 
+        # V3 APIs
+        self.v3.expenses.set_server_url(base_url)
+        self.v3.reports.set_server_url(base_url)
+        self.v3.employees.set_server_url(base_url)
+        self.v3.orgs.set_server_url(base_url)
+        self.v3.reimbursements.set_server_url(base_url)
+        self.v3.cost_centers.set_server_url(base_url)
+        self.v3.categories.set_server_url(base_url)
+        self.v3.projects.set_server_url(base_url)
+        self.v3.refunds.set_server_url(base_url)
+        self.v3.balance_transfers.set_server_url(base_url)
+        self.v3.settlements.set_server_url(base_url)
+        self.v3.advances.set_server_url(base_url)
+        self.v3.advance_requests.set_server_url(base_url)
+        self.v3.bank_transactions.set_server_url(base_url)
+        self.v3.trip_requests.set_server_url(base_url)
+        self.v3.expense_custom_properties.set_server_url(base_url)
+        self.v3.employee_custom_properties.set_server_url(base_url)
+        self.v3.trip_request_custom_properties.set_server_url(base_url)
+        self.v3.advance_request_custom_properties.set_server_url(base_url)
+
+        # V1 APIs
         self.Employees.set_server_url(base_url)
         self.Expenses.set_server_url(base_url)
         self.Reports.set_server_url(base_url)
