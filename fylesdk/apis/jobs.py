@@ -94,7 +94,7 @@ class Jobs(ApiBase):
         response = self._post_request(body, Jobs.JOBS_URL)
         return response
 
-    def cron(self, callback_url: str, callback_method: str, job_description: str, object_id: str, 
+    def trigger_cron_job(self, callback_url: str, callback_method: str, job_description: str, object_id: str, 
              org_user_id: str, job_data_url: str = None, payload: str = None, year: str = None, 
              month: str = None, day: str = None, week: str = None, day_of_week: str = None, 
              hour: str = None, minute: str = None, second: str = None, start_date: str = None, 
