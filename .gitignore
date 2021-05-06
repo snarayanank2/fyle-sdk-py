@@ -16,3 +16,4 @@ fylesdk.egg-info/
 
 # dry run files
 dry_run.py
+test_scripts/
